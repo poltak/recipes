@@ -1,6 +1,6 @@
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
-import { formatAmount, ingredientAmount, parseAmount } from '../site/js/amount.js'
+import { formatAmount, ingredientAmount, parseAmount, parseScale } from '../site/js/amount.js'
 import { findDurations } from '../site/js/durations.js'
 
 test('at 1× amounts stay as written, with nicer fractions', () => {
@@ -36,6 +36,19 @@ test('scales cups and spoons as fractions and metric as decimals', () => {
   assert.equal(formatAmount({ text: '16 to 20 pieces', scale: 2 }), '32 to 40 pieces')
   assert.equal(formatAmount({ text: '1/8 tsp', scale: 0.5 }), '⅛ tsp')
   assert.equal(formatAmount({ text: 'salt & pepper', scale: 2 }), 'salt & pepper')
+})
+
+test('reads a typed scale', () => {
+  assert.equal(parseScale('1.5'), 1.5)
+  assert.equal(parseScale('1,5'), 1.5)
+  assert.equal(parseScale('1/3'), 1 / 3)
+  assert.equal(parseScale('½'), 0.5)
+  assert.equal(parseScale(' 2x '), 2)
+  assert.equal(parseScale('0'), null)
+  assert.equal(parseScale('1.'), null)
+  assert.equal(parseScale('1-2'), null)
+  assert.equal(parseScale('abc'), null)
+  assert.equal(parseScale('500'), null)
 })
 
 test('shows US, metric, or both', () => {

@@ -47,6 +47,15 @@ export function formatAmount({ text, scale = 1 }) {
   return high ? `${low}${amount.separator}${high}${rest}` : `${low}${rest}`
 }
 
+// A scale that someone types: "1.5", "1,5", "1/3", "½", or "2x". Returns null if
+// it is not a number from more than 0 to 100.
+export function parseScale(text) {
+  const amount = parseAmount(text.replace(',', '.'))
+  if (!amount || amount.values.length > 1 || !/^\s*[x×]?\s*$/.test(amount.rest)) return null
+  const [value] = amount.values
+  return value > 0 && value <= 100 ? value : null
+}
+
 // units: 'both' | 'us' | 'metric'. "us" shows `amount`, the amount as written.
 export function ingredientAmount({ ingredient, scale = 1, units = 'both' }) {
   const main = formatAmount({ text: ingredient.amount, scale })

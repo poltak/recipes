@@ -7,7 +7,7 @@ My recipes as a static site. Each recipe is a JSON file. The site shows each rec
 - **Images.** Pictures that you add to the recipe folder. This tab shows only when a recipe has pictures.
 - **Cook.** One step at a time in large text. The screen stays on, and times in a step become timer buttons.
 
-You can scale amounts (½×, 1×, 2×, 3×) and show US units, metric units, or both.
+You can scale amounts with the ½×, 1×, 2×, and 3× buttons, or type a number such as 1.5 or 1/3 in the custom box. You can also show US units, metric units, or both.
 
 The site is plain HTML, CSS, and JavaScript, with no dependencies. It is a PWA, so you can install it on a phone or computer and use it offline.
 
