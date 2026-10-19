@@ -1,0 +1,48 @@
+{
+  "$schema": "../recipe.schema.json",
+  "title": "Buttercream Frosting",
+  "description": "Silky buttercream on a cooked egg and sugar base. Enough for one two-layer cake.",
+  "yield": "about 5 cups",
+  "time": { "prep": "10 min", "cook": "15 min" },
+  "tags": ["baking", "frosting"],
+  "source": { "name": "Cooking For Engineers", "url": "https://www.cookingforengineers.com/recipe/180/Buttercream-Frosting-American" },
+  "ingredients": [
+    { "id": "eggs", "amount": "4 large", "metric": "200 g", "name": "eggs" },
+    { "id": "sugar", "amount": "1 cup", "metric": "200 g", "name": "granulated sugar" },
+    { "id": "vanilla", "amount": "2 tsp.", "metric": "10 mL", "name": "vanilla extract" },
+    { "id": "salt", "amount": "1/2 tsp.", "metric": "3 g", "name": "table salt" },
+    { "id": "butter", "amount": "1 lb.", "metric": "450 g", "name": "unsalted butter", "note": "softened" }
+  ],
+  "steps": [
+    {
+      "id": "whisked",
+      "action": "whisk",
+      "inputs": ["eggs", "sugar", "vanilla", "salt"],
+      "text": "Whisk the eggs, sugar, vanilla, and salt in a heatproof bowl."
+    },
+    {
+      "id": "hot",
+      "action": "whisk over double boiler until 160°F",
+      "inputs": ["whisked"],
+      "text": "Put the bowl over a pan of simmering water. Whisk all the time until the mixture is at 160°F (71°C)."
+    },
+    {
+      "id": "beaten",
+      "action": "beat on medium-high speed 5 min.",
+      "inputs": ["hot"],
+      "text": "Take the bowl off the heat. Beat on medium-high speed for 5 minutes, until the mixture is thick and cool."
+    },
+    { "id": "pieces", "action": "cut into 16 to 20 pieces", "inputs": ["butter"], "text": "Cut the butter into 16 to 20 pieces." },
+    {
+      "id": "buttered",
+      "action": "beat butter in on low speed",
+      "inputs": ["beaten", "pieces"],
+      "text": "On low speed, beat in the butter one piece at a time."
+    },
+    {
+      "action": "beat until smooth and silky",
+      "inputs": ["buttered"],
+      "text": "Beat until the frosting is smooth and silky. If it looks split, keep beating. It comes together."
+    }
+  ]
+}

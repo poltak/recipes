@@ -1,0 +1,101 @@
+{
+  "$schema": "../recipe.schema.json",
+  "title": "Chocolate Cake",
+  "description": "A moist two-layer chocolate cake made with dark chocolate, cacao, and sour cream.",
+  "yield": "one 9-in. two-layer cake",
+  "time": { "prep": "40 min", "cook": "25 min" },
+  "tags": ["dessert", "chocolate", "baking"],
+  "source": { "name": "Cooking For Engineers", "url": "https://www.cookingforengineers.com/recipe/178/Chocolate-Cake" },
+  "ingredients": [
+    { "id": "butter", "amount": "8 oz.", "metric": "225 g", "name": "unsalted butter", "note": "softened", "group": "Batter" },
+    { "id": "sugar", "amount": "1-1/2 cups", "metric": "300 g", "name": "dark brown sugar", "group": "Batter" },
+    { "id": "eggs", "amount": "3 large", "metric": "150 g", "name": "eggs", "group": "Batter" },
+    { "id": "sour-cream", "amount": "1/2 cup", "metric": "115 g", "name": "sour cream", "group": "Batter" },
+    { "id": "vanilla", "amount": "1 tsp.", "metric": "5 mL", "name": "pure vanilla extract", "group": "Batter" },
+    { "id": "chocolate", "amount": "2 oz.", "metric": "55 g", "name": "70% cacao dark chocolate", "group": "Chocolate" },
+    { "id": "cacao", "amount": "1/4 cup", "metric": "20 g", "name": "pure cacao powder", "group": "Chocolate" },
+    { "id": "water", "amount": "1-1/4 cups", "metric": "295 mL", "name": "water", "group": "Chocolate" },
+    { "id": "ap-flour", "amount": "3/4 cup", "metric": "105 g", "name": "all-purpose flour", "group": "Dry" },
+    { "id": "cake-flour", "amount": "3/4 cup", "metric": "85 g", "name": "cake flour", "group": "Dry" },
+    { "id": "soda", "amount": "1-1/4 tsp.", "metric": "5.75 g", "name": "baking soda", "group": "Dry" },
+    { "id": "salt", "amount": "1/4 tsp.", "metric": "1.5 g", "name": "table salt", "group": "Dry" },
+    { "id": "frosting", "amount": "1 batch", "name": "buttercream frosting", "recipe": "buttercream-frosting", "group": "To finish" }
+  ],
+  "steps": [
+    { "action": "Butter and line two 9-in. round cake pans" },
+    { "action": "Preheat oven to 350°F (175°C)" },
+    {
+      "id": "chocolate-bowl",
+      "action": "combine",
+      "inputs": ["chocolate", "cacao"],
+      "text": "Chop the chocolate and put it in a bowl with the cacao powder."
+    },
+    { "id": "boiling", "action": "boil", "inputs": ["water"], "text": "Bring the water to a boil." },
+    {
+      "id": "chocolate-mix",
+      "action": "whisk until smooth",
+      "inputs": ["chocolate-bowl", "boiling"],
+      "text": "Pour the boiling water over the chocolate and whisk until smooth. Let it cool."
+    },
+    {
+      "id": "dry",
+      "action": "sift",
+      "inputs": ["ap-flour", "cake-flour", "soda", "salt"],
+      "text": "Sift the two flours, the baking soda, and the salt together."
+    },
+    { "id": "creamed", "action": "cream", "inputs": ["butter"], "text": "Beat the butter with a mixer until it is creamy." },
+    {
+      "id": "fluffy",
+      "action": "cream",
+      "inputs": ["creamed", "sugar"],
+      "text": "Add the brown sugar and beat until light and fluffy."
+    },
+    {
+      "id": "eggy",
+      "action": "beat in 1 egg at a time",
+      "inputs": ["fluffy", "eggs"],
+      "text": "Beat in the eggs, one at a time."
+    },
+    {
+      "id": "base",
+      "action": "beat on medium speed for 10 sec. and scrape",
+      "inputs": ["eggy", "sour-cream", "vanilla"],
+      "text": "Add the sour cream and vanilla. Beat on medium speed for 10 seconds, then scrape the bowl."
+    },
+    {
+      "id": "batter",
+      "action": "mix in flour and chocolate on low speed until just combined",
+      "inputs": ["base", "chocolate-mix", "dry"],
+      "text": "On low speed, add the flour and the chocolate in turns: 1/3 of the flour, 1/2 of the chocolate, 1/3 of the flour, the rest of the chocolate, then the rest of the flour. Stop when they are just mixed."
+    },
+    {
+      "id": "in-pans",
+      "action": "divide evenly into the pans",
+      "inputs": ["batter"],
+      "text": "Divide the batter evenly between the two pans."
+    },
+    {
+      "id": "smooth",
+      "action": "smooth batter to edges of pans",
+      "inputs": ["in-pans"],
+      "text": "Spread the batter to the edges of the pans."
+    },
+    {
+      "id": "baked",
+      "action": "bake 350°F (175°C) for 25 min.",
+      "inputs": ["smooth"],
+      "text": "Bake for 25 minutes, until a toothpick in the center comes out clean."
+    },
+    {
+      "id": "cooled",
+      "action": "cool 5 min., turn out, cool completely",
+      "inputs": ["baked"],
+      "text": "Let the cakes cool in the pans for 5 minutes. Run a knife around the edges, turn the cakes out onto a wire rack, and let them cool fully."
+    },
+    {
+      "action": "assemble and frost",
+      "inputs": ["cooled", "frosting"],
+      "text": "Put one layer on a plate and spread frosting on top. Put the second layer on top, then frost the top and sides."
+    }
+  ]
+}

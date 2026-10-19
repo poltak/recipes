@@ -1,0 +1,46 @@
+{
+  "$schema": "../recipe.schema.json",
+  "title": "Basic Pancakes",
+  "description": "Light, fluffy pancakes. Mix the dry and wet parts apart, then stir them together quickly.",
+  "yield": "12 pancakes",
+  "time": { "prep": "10 min", "cook": "20 min" },
+  "tags": ["breakfast", "quick"],
+  "source": { "name": "Cooking For Engineers", "url": "https://www.cookingforengineers.com/recipe/47/Basic-Pancakes" },
+  "ingredients": [
+    { "id": "flour", "amount": "1-1/2 cups", "metric": "190 g", "name": "all-purpose flour", "group": "Dry" },
+    { "id": "sugar", "amount": "3 Tbs.", "metric": "38 g", "name": "sugar", "group": "Dry" },
+    { "id": "powder", "amount": "1-1/2 tsp.", "metric": "7 g", "name": "baking powder", "group": "Dry" },
+    { "id": "salt", "amount": "1/2 tsp.", "metric": "3 g", "name": "salt", "group": "Dry" },
+    { "id": "butter", "amount": "3 Tbs.", "metric": "45 g", "name": "unsalted butter", "note": "melted", "group": "Wet" },
+    { "id": "milk", "amount": "1-1/2 cups", "metric": "355 mL", "name": "milk", "group": "Wet" },
+    { "id": "eggs", "amount": "2 large", "name": "eggs", "group": "Wet" },
+    { "id": "vanilla", "amount": "1/2 tsp.", "metric": "2.5 mL", "name": "vanilla extract", "group": "Wet" },
+    { "id": "oil", "amount": "1 tsp.", "metric": "5 mL", "name": "neutral oil", "note": "for the pan" }
+  ],
+  "steps": [
+    { "action": "Heat a griddle or large pan over medium heat" },
+    {
+      "id": "dry",
+      "action": "mix",
+      "inputs": ["flour", "sugar", "powder", "salt"],
+      "text": "Mix the flour, sugar, baking powder, and salt in a large bowl."
+    },
+    {
+      "id": "wet",
+      "action": "whisk",
+      "inputs": ["butter", "milk", "eggs", "vanilla"],
+      "text": "In a second bowl, whisk the melted butter, milk, eggs, and vanilla."
+    },
+    {
+      "id": "batter",
+      "action": "whisk briefly",
+      "inputs": ["dry", "wet"],
+      "text": "Pour the wet mixture into the dry mixture. Whisk only until no dry flour shows. Small lumps are good."
+    },
+    {
+      "action": "cook 1/4 cup at a time, 2 min per side",
+      "inputs": ["batter", "oil"],
+      "text": "Oil the griddle lightly. Pour 1/4 cup of batter for each pancake. Cook for about 2 minutes, until bubbles show on top, then turn and cook 2 minutes more."
+    }
+  ]
+}

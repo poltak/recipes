@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Recipe",
+  "description": "One recipe. Ingredients are the leaves of a tree. Each step uses ingredients and earlier steps, and makes one new thing.",
+  "type": "object",
+  "required": ["title", "ingredients", "steps"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "type": "string" },
+    "title": { "type": "string" },
+    "description": { "type": "string", "description": "One or two sentences for the recipe card." },
+    "yield": { "type": "string", "description": "What the recipe makes, such as \"16 brownies\" or \"4 servings\". A number at the start scales." },
+    "time": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "prep": { "type": "string", "examples": ["15 min"] },
+        "cook": { "type": "string", "examples": ["35 min"] },
+        "total": { "type": "string", "examples": ["1 hr"] }
+      }
+    },
+    "tags": { "type": "array", "items": { "type": "string" } },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "name": { "type": "string" },
+        "url": { "type": "string", "format": "uri" }
+      }
+    },
+    "images": {
+      "type": "array",
+      "description": "Pictures for the Images view. The first one is also the picture on the recipe card.",
+      "items": {
+        "type": "object",
+        "required": ["src"],
+        "additionalProperties": false,
+        "properties": {
+          "src": { "type": "string", "description": "A file name in this recipe's folder, or a full URL." },
+          "alt": { "type": "string", "description": "What the picture shows, for screen readers." },
+          "caption": { "type": "string" }
+        }
+      }
+    },
+    "ingredients": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "name"],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string", "description": "A short name that steps use to refer to this ingredient." },
+          "amount": { "type": "string", "description": "The amount as you write it, such as \"1-1/2 cups\" or \"2 large\". A number at the start scales." },
+          "metric": { "type": "string", "description": "The same amount in metric units, such as \"190 g\"." },
+          "name": { "type": "string" },
+          "note": { "type": "string", "description": "Shown after the name, such as \"softened\"." },
+          "group": { "type": "string", "description": "A heading in the Text view, such as \"Frosting\". Put ingredients of one group next to each other." },
+          "recipe": { "type": "string", "description": "The folder name of another recipe that makes this ingredient." }
+        }
+      }
+    },
+    "steps": {
+      "type": "array",
+      "description": "In the order that you do them. A step can only use ingredients and earlier steps, and each one only once.",
+      "items": {
+        "type": "object",
+        "required": ["action"],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string", "description": "Give an id to each step that a later step uses." },
+          "action": { "type": "string", "description": "The short text in the table, such as \"melt\" or \"bake 350°F 30 min\"." },
+          "inputs": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "Ids of ingredients and earlier steps. Leave this out for a prep step, such as \"Preheat oven\"."
+          },
+          "text": { "type": "string", "description": "The full instruction for the Text and Cook views. If you leave it out, they show the action." }
+        }
+      }
+    },
+    "notes": { "type": "array", "items": { "type": "string" } }
+  }
+}

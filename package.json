@@ -1,0 +1,10 @@
+{
+  "name": "recipes",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node scripts/serve.mjs",
+    "build": "node scripts/build.mjs",
+    "test": "node --test"
+  }
+}

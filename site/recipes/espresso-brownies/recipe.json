@@ -1,0 +1,54 @@
+{
+  "$schema": "../recipe.schema.json",
+  "title": "Espresso Brownies",
+  "description": "Fudgy cocoa brownies with a shot of espresso in the batter.",
+  "yield": "one 8×8-in pan",
+  "time": { "prep": "15 min", "cook": "35 min" },
+  "tags": ["dessert", "chocolate", "baking"],
+  "source": { "name": "Cooking For Engineers", "url": "https://www.cookingforengineers.com/recipe/327/Espresso-Brownies" },
+  "ingredients": [
+    { "id": "butter", "amount": "4 oz", "metric": "115 g", "name": "unsalted butter" },
+    { "id": "sugar", "amount": "1 cup", "metric": "200 g", "name": "sugar" },
+    { "id": "vanilla", "amount": "1/4 tsp.", "metric": "2.5 mL", "name": "vanilla extract" },
+    { "id": "espresso", "amount": "4 Tbs", "metric": "60 mL", "name": "fresh brewed espresso or very strong coffee" },
+    { "id": "eggs", "amount": "2 large", "metric": "100 g", "name": "eggs" },
+    { "id": "flour", "amount": "1/2 cup", "metric": "80 g", "name": "all-purpose flour" },
+    { "id": "cocoa", "amount": "1/3 cup", "metric": "80 g", "name": "Hershey's cocoa powder" },
+    { "id": "soda", "amount": "1/4 tsp.", "metric": "1.3 g", "name": "baking soda" },
+    { "id": "salt", "amount": "1/4 tsp.", "metric": "1.5 g", "name": "table salt" }
+  ],
+  "steps": [
+    { "action": "Butter and flour an 8x8-in pan" },
+    { "action": "Preheat oven to 350°F (170°C)" },
+    {
+      "id": "melted",
+      "action": "melt",
+      "inputs": ["butter"],
+      "text": "Melt the butter in a saucepan over low heat."
+    },
+    {
+      "id": "sweet",
+      "action": "mix",
+      "inputs": ["melted", "sugar", "vanilla", "espresso"],
+      "text": "Take the pan off the heat. Stir in the sugar, vanilla, and espresso."
+    },
+    {
+      "id": "wet",
+      "action": "mix",
+      "inputs": ["sweet", "eggs"],
+      "text": "Stir in the eggs until the mixture is smooth."
+    },
+    {
+      "id": "batter",
+      "action": "fold in",
+      "inputs": ["wet", "flour", "cocoa", "soda", "salt"],
+      "text": "Fold in the flour, cocoa, baking soda, and salt with a spatula until you see no dry flour. Spread the batter in the pan."
+    },
+    {
+      "action": "bake 350°F (170°C) 30 to 40 min",
+      "inputs": ["batter"],
+      "text": "Bake for 30 to 40 minutes. The brownies are done when the center is set and a toothpick comes out with only a few crumbs. Let them cool fully in the pan before you cut them."
+    }
+  ],
+  "notes": ["A glass pan gives gooier brownies than a metal pan."]
+}
