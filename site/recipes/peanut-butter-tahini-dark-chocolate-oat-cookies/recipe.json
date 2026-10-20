@@ -12,12 +12,12 @@
     { "id": "sugar", "amount": "9 g", "name": "sugar" },
     { "id": "egg", "amount": "1 large", "name": "egg" },
     { "id": "vanilla", "amount": "1 tsp", "name": "vanilla extract" },
-    { "id": "oats", "amount": "90 g", "name": "rolled oats" },
-    { "id": "almond-flour", "amount": "40 g", "name": "almond flour" },
     { "id": "soda", "amount": "1/2 tsp", "name": "baking soda" },
     { "id": "salt", "amount": "1 g", "name": "fine salt" },
     { "id": "dark-chocolate", "amount": "30 g", "name": "dark chocolate", "note": "chips or chopped" },
-    { "id": "pumpkin-seeds", "amount": "10 g", "name": "pumpkin seeds" }
+    { "id": "pumpkin-seeds", "amount": "10 g", "name": "pumpkin seeds" },
+    { "id": "oats", "amount": "90 g", "name": "rolled oats" },
+    { "id": "almond-flour", "amount": "40 g", "name": "almond flour" }
   ],
   "steps": [
     {
@@ -28,30 +28,30 @@
       "id": "wet",
       "action": "Mix wet ingredients",
       "inputs": ["peanut-butter", "tahini", "honey", "sugar", "egg", "vanilla"],
-      "text": "Stir or whisk the peanut butter, tahini, honey, sugar, egg and vanilla together until smooth."
+      "text": "Mix the peanut butter, tahini, honey, sugar, egg and vanilla together until smooth."
     },
     {
-      "id": "dry",
-      "action": "Mix dry ingredients",
-      "inputs": ["oats", "almond-flour", "soda", "salt"],
-      "text": "Mix the rolled oats, almond flour, baking soda and salt in a separate bowl."
+      "id": "seasoned-wet",
+      "action": "Mix in soda + salt",
+      "inputs": ["wet", "soda", "salt"],
+      "text": "Stir the baking soda and fine salt thoroughly into the wet mixture so they disperse evenly before the dough thickens."
+    },
+    {
+      "id": "wet-with-additions",
+      "action": "Fold in chocolate + seeds",
+      "inputs": ["seasoned-wet", "dark-chocolate", "pumpkin-seeds"],
+      "text": "Fold the dark chocolate and pumpkin seeds into the wet mixture before adding the oats."
     },
     {
       "id": "dough",
-      "action": "Combine",
-      "inputs": ["wet", "dry"],
-      "text": "Stir the dry ingredients into the wet ingredients to make a dough."
-    },
-    {
-      "id": "dough-with-additions",
-      "action": "Fold in chocolate + seeds",
-      "inputs": ["dough", "dark-chocolate", "pumpkin-seeds"],
-      "text": "Fold in the dark chocolate and pumpkin seeds. No added milk in this version."
+      "action": "Add oats + almond flour",
+      "inputs": ["wet-with-additions", "oats", "almond-flour"],
+      "text": "Add the rolled oats and almond flour last, and fold just until combined. The dough gets clumpy quickly, so make sure all the other ingredients are mixed evenly first. No added milk in this version."
     },
     {
       "id": "shaped",
       "action": "Scoop and flatten",
-      "inputs": ["dough-with-additions"],
+      "inputs": ["dough"],
       "text": "Scoop dough onto the lined tray, leave space between cookies, and flatten slightly. The number of cookies depends on scoop size."
     },
     {
@@ -68,6 +68,7 @@
   ],
   "notes": [
     "Latest almond-flour batch: 40 g honey, 9 g sugar, 30 g dark chocolate, 10 g pumpkin seeds only, and no milk.",
+    "Mix the baking soda, salt, chocolate and pumpkin seeds into the wet mixture before adding the oats and almond flour, because the oats make the dough clumpy and hard to mix evenly.",
     "This uses peanut butter, not almond butter.",
     "Cookie count depends on how large you scoop them."
   ]
