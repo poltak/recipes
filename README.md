@@ -9,16 +9,18 @@ My recipes as a static site. Each recipe is a JSON file. The site shows each rec
 
 You can scale amounts with the ½×, 1×, 2×, and 3× buttons, or type a number such as 1.5 or 1/3 in the custom box. You can also show US units, metric units, or both.
 
-The site is plain HTML, CSS, and JavaScript, with no dependencies. It is a PWA, so you can install it on a phone or computer and use it offline.
+The site is plain HTML, CSS, and JavaScript, with no dependencies. It is a PWA, so you can install it on a phone or computer and use it offline. It runs on Cloudflare Workers. The only dev dependency is Wrangler, the Cloudflare tool that deploys it.
 
 ## Run it on your computer
 
 You need Node 22 or newer.
 
 ```sh
-pnpm dev     # http://localhost:8000
-pnpm test    # unit tests
-pnpm build   # check all recipes and write site/recipes/index.json
+pnpm install
+pnpm dev          # http://localhost:8000
+pnpm test         # unit tests
+pnpm build        # check all recipes and write site/recipes/index.json
+pnpm run deploy   # test, build, and deploy to Cloudflare
 ```
 
 `pnpm dev` makes the recipe index again each time the home page loads, so you do not need `pnpm build` while you work.
@@ -26,7 +28,7 @@ pnpm build   # check all recipes and write site/recipes/index.json
 ## Files
 
 ```
-site/                     the website (GitHub Pages publishes this folder)
+site/                     the website (Cloudflare serves the files in this folder)
   index.html              all recipes
   recipe.html             one recipe: recipe.html?r=espresso-brownies
   sw.js                   service worker (offline use)
@@ -38,6 +40,8 @@ site/                     the website (GitHub Pages publishes this folder)
 scripts/build.mjs         checks recipes, writes site/recipes/index.json
 scripts/serve.mjs         local web server
 tests/                    unit tests (node --test)
+worker/index.js           Worker code for requests that match no file in site/
+wrangler.jsonc            Cloudflare settings
 ```
 
 ## Add a recipe
@@ -110,13 +114,17 @@ The order of `inputs` sets the order of the rows in the table. Each step goes in
 
 `pnpm build` shows a warning for each picture that is larger than 600 KB.
 
-## Publish on GitHub Pages
+## Publish on Cloudflare
 
-The workflow in `.github/workflows/deploy.yml` runs the tests, builds the index, and publishes `site/` on each push to `main`.
+`pnpm run deploy` deploys from your computer. Before each deploy, Wrangler runs the tests and `pnpm build` (see `build` in `wrangler.jsonc`). If a test fails or a recipe has a problem, Wrangler does not deploy.
 
-Do this one time: on GitHub, go to **Settings → Pages**, and set **Source** to **GitHub Actions**.
+To deploy on each push to `main`, do this one time:
 
-The site is then at https://poltak.github.io/recipes/.
+1. In the Cloudflare dashboard, open the `recipes` Worker.
+2. Go to **Settings → Builds** and connect the GitHub repo.
+3. Keep the default deploy command, `npx wrangler deploy`.
+
+The site is at https://recipes.hoian-embroidery.workers.dev/.
 
 ## Install the app
 

@@ -1,0 +1,18 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "recipes",
+  "main": "worker/index.js",
+  "compatibility_date": "2026-10-01",
+  // Wrangler runs this before each deploy. It stops the deploy if a test fails or a
+  // recipe has problems, and it writes site/recipes/index.json.
+  "build": {
+    "command": "node --test && node scripts/build.mjs"
+  },
+  "assets": {
+    "directory": "./site",
+    "binding": "ASSETS",
+    // Serve each file at its own path. The default sends recipe.html to /recipe, and
+    // the service worker caches pages by path. Paths with no file go to the Worker.
+    "html_handling": "none"
+  }
+}
