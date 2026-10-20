@@ -1,0 +1,9 @@
+# Secrets for the MCP server. To use them with `wrangler dev`, copy this file to .dev.vars.
+# To set them on Cloudflare, use `pnpm exec wrangler secret put <NAME>`.
+
+# A fine-grained GitHub token for this repo only, with "Contents: Read and write".
+GITHUB_TOKEN=
+
+# Random text of at least 32 characters, such as the output of `openssl rand -hex 32`.
+# The MCP server is at https://<your site>/mcp/<MCP_SECRET>.
+MCP_SECRET=

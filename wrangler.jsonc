@@ -14,5 +14,11 @@
     // Serve each file at its own path. The default sends recipe.html to /recipe, and
     // the service worker caches pages by path. Paths with no file go to the Worker.
     "html_handling": "none"
+  },
+  // The repo and branch where the MCP server saves recipes. The secrets are in
+  // .dev.vars.example.
+  "vars": {
+    "GITHUB_REPO": "poltak/recipes",
+    "GITHUB_BRANCH": "main"
   }
 }

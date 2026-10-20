@@ -41,6 +41,9 @@ scripts/build.mjs         checks recipes, writes site/recipes/index.json
 scripts/serve.mjs         local web server
 tests/                    unit tests (node --test)
 worker/index.js           Worker code for requests that match no file in site/
+worker/mcp.js             MCP protocol
+worker/tools.js           MCP tools, and the recipe guide for chat apps
+worker/github.js          reads and writes recipe files through the GitHub API
 wrangler.jsonc            Cloudflare settings
 ```
 
@@ -125,6 +128,33 @@ To deploy on each push to `main`, do this one time:
 3. Keep the default deploy command, `npx wrangler deploy`.
 
 The site is at https://recipes.hoian-embroidery.workers.dev/.
+
+## Add recipes from ChatGPT
+
+The Worker has an MCP server. ChatGPT, and other chat apps that can use MCP servers, can use it to read, add, and change recipes. Each saved recipe is a commit to `main`, so it is on the site after the next deploy, in 1 to 2 minutes.
+
+The server has five tools: `list_recipes`, `get_recipe`, `check_recipe`, `create_recipe`, and `update_recipe`. The tools tell the chat app the recipe format and the rules for steps and inputs. The server checks each recipe with the same code as `pnpm build`, so a saved recipe cannot stop a deploy. The server does not save pictures. When it changes a recipe, it keeps the pictures that the recipe has.
+
+Do this one time:
+
+1. On GitHub, make a fine-grained personal access token. Give it access to this repo only, with the permission **Contents: Read and write**.
+2. Add the token to the Worker. Wrangler asks you for the value.
+
+   ```sh
+   pnpm exec wrangler secret put GITHUB_TOKEN
+   ```
+
+3. Make a random secret for the address of the server, and add it to the Worker. This command shows the address of the server:
+
+   ```sh
+   S=$(openssl rand -hex 32); echo "$S" | pnpm exec wrangler secret put MCP_SECRET; echo "https://recipes.hoian-embroidery.workers.dev/mcp/$S"
+   ```
+
+   Anyone who has this address can change your recipes, so keep it private. To change the address, run the command again.
+
+4. In ChatGPT, turn on Developer Mode. Then add an app (connector) with the address of the server and no authentication.
+
+The server saves recipes to the repo and branch in `vars` in `wrangler.jsonc`. To try the server on your computer, copy `.dev.vars.example` to `.dev.vars` and fill it in. Add `GITHUB_BRANCH=<a test branch>` so that your tests do not change `main`. Then run `pnpm exec wrangler dev`.
 
 ## Install the app
 
