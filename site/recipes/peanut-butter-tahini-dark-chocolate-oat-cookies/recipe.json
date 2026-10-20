@@ -1,0 +1,74 @@
+{
+  "$schema": "../recipe.schema.json",
+  "title": "Peanut Butter, Tahini & Dark Chocolate Oat Cookies",
+  "description": "Oat cookies with peanut butter, tahini, almond flour, honey, pumpkin seeds and dark chocolate. Current almond-flour batch with no added milk.",
+  "yield": "1 batch",
+  "time": { "cook": "9–11 min" },
+  "tags": ["cookies", "baking", "oats", "chocolate"],
+  "ingredients": [
+    { "id": "peanut-butter", "amount": "60 g", "name": "peanut butter" },
+    { "id": "tahini", "amount": "20 g", "name": "tahini" },
+    { "id": "honey", "amount": "40 g", "name": "honey" },
+    { "id": "sugar", "amount": "9 g", "name": "sugar" },
+    { "id": "egg", "amount": "1 large", "name": "egg" },
+    { "id": "vanilla", "amount": "1 tsp", "name": "vanilla extract" },
+    { "id": "oats", "amount": "90 g", "name": "rolled oats" },
+    { "id": "almond-flour", "amount": "40 g", "name": "almond flour" },
+    { "id": "soda", "amount": "1/2 tsp", "name": "baking soda" },
+    { "id": "salt", "amount": "1 g", "name": "fine salt" },
+    { "id": "dark-chocolate", "amount": "30 g", "name": "dark chocolate", "note": "chips or chopped" },
+    { "id": "pumpkin-seeds", "amount": "10 g", "name": "pumpkin seeds" }
+  ],
+  "steps": [
+    {
+      "action": "Preheat to 175°C",
+      "text": "Preheat the oven to 175°C (350°F) and line a baking tray with parchment paper."
+    },
+    {
+      "id": "wet",
+      "action": "Mix wet ingredients",
+      "inputs": ["peanut-butter", "tahini", "honey", "sugar", "egg", "vanilla"],
+      "text": "Stir or whisk the peanut butter, tahini, honey, sugar, egg and vanilla together until smooth."
+    },
+    {
+      "id": "dry",
+      "action": "Mix dry ingredients",
+      "inputs": ["oats", "almond-flour", "soda", "salt"],
+      "text": "Mix the rolled oats, almond flour, baking soda and salt in a separate bowl."
+    },
+    {
+      "id": "dough",
+      "action": "Combine",
+      "inputs": ["wet", "dry"],
+      "text": "Stir the dry ingredients into the wet ingredients to make a dough."
+    },
+    {
+      "id": "dough-with-additions",
+      "action": "Fold in chocolate + seeds",
+      "inputs": ["dough", "dark-chocolate", "pumpkin-seeds"],
+      "text": "Fold in the dark chocolate and pumpkin seeds. No added milk in this version."
+    },
+    {
+      "id": "shaped",
+      "action": "Scoop and flatten",
+      "inputs": ["dough-with-additions"],
+      "text": "Scoop dough onto the lined tray, leave space between cookies, and flatten slightly. The number of cookies depends on scoop size."
+    },
+    {
+      "id": "baked",
+      "action": "Bake 9–11 min",
+      "inputs": ["shaped"],
+      "text": "Bake at 175°C (350°F) for about 9–11 minutes; check earlier if making smaller cookies."
+    },
+    {
+      "action": "Cool 5 min",
+      "inputs": ["baked"],
+      "text": "Leave the cookies on the tray for about 5 minutes before moving them."
+    }
+  ],
+  "notes": [
+    "Latest almond-flour batch: 40 g honey, 9 g sugar, 30 g dark chocolate, 10 g pumpkin seeds only, and no milk.",
+    "This uses peanut butter, not almond butter.",
+    "Cookie count depends on how large you scoop them."
+  ]
+}
