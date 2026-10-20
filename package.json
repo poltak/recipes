@@ -8,6 +8,7 @@
     "test": "node --test",
     "deploy": "wrangler deploy"
   },
+  "packageManager": "pnpm@12.6.0",
   "devDependencies": {
     "wrangler": "4.151.1"
   }
