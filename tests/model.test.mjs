@@ -1,7 +1,7 @@
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
 import { readFile } from 'node:fs/promises'
-import { layoutTable, validateRecipe } from '../site/js/model.js'
+import { checkRecipe, layoutTable, validateRecipe } from '../site/js/model.js'
 
 const brownies = JSON.parse(await readFile(new URL('../site/recipes/espresso-brownies/recipe.json', import.meta.url), 'utf8'))
 
@@ -84,6 +84,23 @@ test('validation finds broken references', () => {
     'steps[2] ("two"): unknown input "flour"',
     'steps[2] ("two"): "oven" has no inputs, so it cannot be an input',
     'ingredient "milk" is not an input of any step',
+  ])
+})
+
+test('checkRecipe finds wrong types, unknown fields, and broken links', async () => {
+  const schema = JSON.parse(await readFile(new URL('../site/recipes/recipe.schema.json', import.meta.url), 'utf8'))
+  const recipe = {
+    title: 'Toast',
+    servings: 2,
+    time: { prep: 5 },
+    ingredients: [{ id: 'bread', name: 'bread', qty: 1 }, { id: 'jam', name: 'jam', recipe: 'jam' }],
+    steps: [{ action: 'toast', inputs: ['bread', 'jam'] }],
+  }
+  assert.deepEqual(checkRecipe({ recipe, schema, slugs: ['toast'] }), [
+    'unknown field "servings"',
+    'time.prep: must be text',
+    'ingredients[0]: unknown field "qty"',
+    'ingredient "jam" links to a recipe that does not exist: "jam"',
   ])
 })
 

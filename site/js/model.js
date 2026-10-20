@@ -54,6 +54,40 @@ export function validateRecipe(recipe) {
   return errors
 }
 
+// All the checks for a recipe file: the field types, the tree, and the links to other
+// recipes. `schema` is recipe.schema.json. `slugs` lists the folders in site/recipes/.
+// The build and the MCP server both use this, so they accept the same recipes.
+export function checkRecipe({ recipe, schema, slugs }) {
+  const errors = [...schemaErrors({ value: recipe, schema }), ...validateRecipe(recipe)]
+  for (const ingredient of Array.isArray(recipe?.ingredients) ? recipe.ingredients : []) {
+    if (ingredient?.recipe && !slugs.includes(ingredient.recipe)) {
+      errors.push(`ingredient "${ingredient.id}" links to a recipe that does not exist: "${ingredient.recipe}"`)
+    }
+  }
+  return errors
+}
+
+// Finds fields of the wrong type and fields that the schema does not know. It reads
+// only the parts of JSON Schema that recipe.schema.json uses. validateRecipe reports
+// missing fields.
+export function schemaErrors({ value, schema, path = '' }) {
+  if (schema.type === 'object') {
+    if (!value || typeof value !== 'object' || Array.isArray(value)) return path ? [`${path}: must be an object`] : []
+    return Object.entries(value).flatMap(([key, item]) => {
+      if (schema.properties?.[key]) {
+        return schemaErrors({ value: item, schema: schema.properties[key], path: path ? `${path}.${key}` : key })
+      }
+      return schema.additionalProperties === false ? [`${path ? `${path}: ` : ''}unknown field "${key}"`] : []
+    })
+  }
+  if (schema.type === 'array') {
+    if (!Array.isArray(value)) return [`${path}: must be a list`]
+    return value.flatMap((item, i) => schemaErrors({ value: item, schema: schema.items, path: `${path}[${i}]` }))
+  }
+  if (schema.type === 'string' && typeof value !== 'string') return [`${path}: must be text`]
+  return []
+}
+
 // Lays the recipe out as a grid, in the style of cookingforengineers.com.
 // Ingredients go down the first column. Each step is a cell in the first
 // column to the right of all its inputs, and spans the rows of every

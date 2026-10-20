@@ -3,7 +3,7 @@
 import { readdir, readFile, stat, writeFile } from 'node:fs/promises'
 import { join } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { SLUG, assetUrl, layoutTable, validateRecipe } from '../site/js/model.js'
+import { SLUG, assetUrl, checkRecipe, layoutTable } from '../site/js/model.js'
 
 const RECIPES = fileURLToPath(new URL('../site/recipes/', import.meta.url))
 const BIG_IMAGE = 600 * 1024
@@ -13,9 +13,10 @@ export async function buildIndex() {
   const errors = []
   const warnings = []
   const index = []
-  const folders = (await readdir(RECIPES, { withFileTypes: true })).filter((entry) => entry.isDirectory())
+  const schema = JSON.parse(await readFile(join(RECIPES, 'recipe.schema.json'), 'utf8'))
+  const slugs = (await readdir(RECIPES, { withFileTypes: true })).filter((entry) => entry.isDirectory()).map((entry) => entry.name)
 
-  for (const { name: slug } of folders) {
+  for (const slug of slugs) {
     if (!SLUG.test(slug)) {
       errors.push(`${slug}: use lowercase letters, numbers, and "-" in folder names`)
       continue
@@ -27,13 +28,8 @@ export async function buildIndex() {
       errors.push(`${slug}/recipe.json: ${error.message}`)
       continue
     }
-    const problems = validateRecipe(recipe)
-    for (const ingredient of recipe.ingredients ?? []) {
-      if (ingredient.recipe && !folders.some((folder) => folder.name === ingredient.recipe)) {
-        problems.push(`ingredient "${ingredient.id}" links to a recipe that does not exist: "${ingredient.recipe}"`)
-      }
-    }
-    for (const image of recipe.images ?? []) {
+    const problems = checkRecipe({ recipe, schema, slugs })
+    for (const image of Array.isArray(recipe?.images) ? recipe.images : []) {
       if (!image?.src || /^https?:\/\//.test(image.src)) continue
       const size = await fileSize(join(RECIPES, slug, image.src))
       if (size === null) problems.push(`image not found: ${image.src}`)
