@@ -1,6 +1,6 @@
 // recipe.html?r=<slug>#<view>
 import { h } from './dom.js'
-import { SLUG, validateRecipe } from './model.js'
+import { NUTRIENTS, SLUG, applyChoices, selectedOptions, validateRecipe } from './model.js'
 import { formatAmount, parseAmount, parseScale } from './amount.js'
 import { renderTable } from './views/table.js'
 import { renderText } from './views/text.js'
@@ -63,9 +63,11 @@ function showRecipe(recipe) {
   document.title = `${recipe.title} · Recipes`
   const views = VIEWS.filter((view) => !view.show || view.show(recipe))
   const hasMetric = recipe.ingredients.some((ingredient) => ingredient.amount && ingredient.metric)
+  const choices = recipe.choices ?? []
   const state = {
     scale: 1,
     units: hasMetric ? (localStorage.getItem('units') ?? 'both') : 'both',
+    picks: loadPicks({ recipe }),
     view: null,
   }
 
@@ -103,6 +105,26 @@ function showRecipe(recipe) {
       }),
   )
   const viewBox = h('div', { class: 'view' })
+  const choiceBox =
+    choices.length > 0 &&
+    h(
+      'div',
+      { class: 'choices' },
+      choices.map((choice) =>
+        segmented({
+          label: choice.label,
+          options: choice.options.map((option) => [option.id, capitalize(option.label)]),
+          get: () => state.picks[choice.id],
+          set: (id) => {
+            state.picks = { ...state.picks, [choice.id]: id }
+            savePicks({ recipe, picks: state.picks })
+            showView()
+          },
+        }),
+      ),
+    )
+  const choiceNotes = h('div', { class: 'choice-notes' })
+  const nutritionBox = h('div', { class: 'nutrition' })
 
   main.replaceChildren(
     h(
@@ -132,6 +154,9 @@ function showRecipe(recipe) {
             { class: 'tags' },
             recipe.tags.map((tag) => h('a', { class: 'tag', href: `./?tag=${encodeURIComponent(tag)}` }, tag)),
           ),
+        choiceBox,
+        choiceNotes,
+        nutritionBox,
       ),
       h('div', { class: 'controls' }, viewNav, toolbar),
       viewBox,
@@ -149,14 +174,57 @@ function showRecipe(recipe) {
       if (link.dataset.view === view.id) link.setAttribute('aria-current', 'true')
       else link.removeAttribute('aria-current')
     }
-    for (const control of toolbar.querySelectorAll('button, input')) control.update()
+    for (const control of main.querySelectorAll('.toolbar button, .toolbar input, .choices button')) control.update()
     toolbar.hidden = Boolean(view.plain)
     yieldText.textContent = scaledYield({ text: recipe.yield ?? '', scale: state.scale })
-    viewBox.replaceChildren(view.render({ recipe, slug, scale: state.scale, units: state.units }))
+    const variant = applyChoices({ recipe, picks: state.picks })
+    const notes = Object.values(selectedOptions({ recipe, picks: state.picks })).filter((option) => option.note)
+    choiceNotes.replaceChildren(...notes.map((option) => h('p', {}, option.note)))
+    nutritionBox.replaceChildren(...(variant.nutrition ?? []).map(nutritionLine))
+    viewBox.replaceChildren(view.render({ recipe: variant, slug, scale: state.scale, units: state.units }))
   }
 
   window.addEventListener('hashchange', showView)
+  if (choices.length > 0) savePicks({ recipe, picks: state.picks })
   showView()
+}
+
+// The options in the page address win, then the options that the cook used last time.
+// recipe.html?r=cookies&flour=chickpea
+function loadPicks({ recipe }) {
+  const params = new URLSearchParams(location.search)
+  const saved = JSON.parse(localStorage.getItem(`picks:${slug}`) ?? '{}')
+  const picks = Object.fromEntries((recipe.choices ?? []).map((choice) => [choice.id, params.get(choice.id) ?? saved[choice.id]]))
+  const selected = selectedOptions({ recipe, picks })
+  return Object.fromEntries(Object.entries(selected).map(([choice, option]) => [choice, option.id]))
+}
+
+// Puts the options in the page address, so that a link opens the same version.
+// The address leaves out the default options.
+function savePicks({ recipe, picks }) {
+  localStorage.setItem(`picks:${slug}`, JSON.stringify(picks))
+  const params = new URLSearchParams(location.search)
+  for (const choice of recipe.choices ?? []) {
+    if (picks[choice.id] === choice.options[0].id) params.delete(choice.id)
+    else params.set(choice.id, picks[choice.id])
+  }
+  history.replaceState(null, '', `?${params}${location.hash}`)
+}
+
+// "Per 100 g · 480 kcal · 12 g protein · 30 g fat · 40 g carbs · 18 g sugar · 4 g fiber"
+function nutritionLine(entry) {
+  return h(
+    'p',
+    {},
+    h('span', { class: 'nutrition-per' }, `Per ${entry.per}`),
+    NUTRIENTS.filter((key) => typeof entry[key] === 'number').map((key) =>
+      h('span', {}, h('b', {}, key === 'kcal' ? formatNutrient(entry[key]) : `${formatNutrient(entry[key])} g`), ` ${key}`),
+    ),
+  )
+}
+
+function formatNutrient(value) {
+  return String(value >= 10 ? Math.round(value) : Number(value.toFixed(1)))
 }
 
 // A row of buttons where one is on, such as "½× 1× 2× 3×".

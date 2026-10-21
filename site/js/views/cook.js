@@ -16,6 +16,7 @@ export function renderCook({ recipe, slug, scale, units }) {
   stopCooking?.()
   if (place.slug !== slug) place = { slug, index: 0 }
   const total = recipe.steps.length
+  place.index = Math.min(place.index, total) // Other options can have fewer steps.
   const ingredients = new Map(recipe.ingredients.map((ingredient) => [ingredient.id, ingredient]))
   const stepNumbers = new Map(recipe.steps.map((step, i) => [step.id, i + 1]))
   const root = h('section', { class: 'cook' })

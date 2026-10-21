@@ -3,7 +3,7 @@
 import { readdir, readFile, stat, writeFile } from 'node:fs/promises'
 import { join } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { SLUG, assetUrl, checkRecipe, layoutTable } from '../site/js/model.js'
+import { SLUG, applyChoices, assetUrl, checkRecipe, layoutTable } from '../site/js/model.js'
 
 const RECIPES = fileURLToPath(new URL('../site/recipes/', import.meta.url))
 const BIG_IMAGE = 600 * 1024
@@ -47,9 +47,10 @@ export async function buildIndex() {
   return { count: index.length, errors, warnings }
 }
 
-// The data that the home page needs for one recipe card.
+// The data that the home page needs for one recipe card. The drawing of the table
+// uses the default options. The search uses the ingredients of all the options.
 function summarize({ slug, recipe }) {
-  const { cols, prep, rows } = layoutTable(recipe)
+  const { cols, prep, rows } = layoutTable(applyChoices({ recipe }))
   const cells = rows
     .flat()
     .filter((cell) => cell.kind !== 'empty')

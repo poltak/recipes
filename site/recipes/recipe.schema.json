@@ -42,6 +42,33 @@
         }
       }
     },
+    "choices": {
+      "type": "array",
+      "description": "Parts of the recipe that the cook can change, such as the flour or the mix-in. The page shows a row of buttons for each choice. An ingredient, step, or nutrition entry with \"when\" is only for some options.",
+      "items": {
+        "type": "object",
+        "required": ["id", "label", "options"],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string", "description": "Lowercase letters, numbers, and \"-\", such as \"mix-in\". In a step, {mix-in} shows the label of the selected option." },
+          "label": { "type": "string", "description": "The name of the choice on the page, such as \"Mix-in\"." },
+          "options": {
+            "type": "array",
+            "description": "Two or more options. The first one is the default.",
+            "items": {
+              "type": "object",
+              "required": ["id", "label"],
+              "additionalProperties": false,
+              "properties": {
+                "id": { "type": "string", "description": "Lowercase letters, numbers, and \"-\", such as \"dates\"." },
+                "label": { "type": "string", "description": "The text on the button, and the text for {choice-id} in steps. Write it as it reads in a sentence, such as \"chocolate chips\"." },
+                "note": { "type": "string", "description": "Shown when the cook selects this option, such as \"Chickpea flour is stickier, so this version has milk.\"" }
+              }
+            }
+          }
+        }
+      }
+    },
     "ingredients": {
       "type": "array",
       "items": {
@@ -55,7 +82,12 @@
           "name": { "type": "string" },
           "note": { "type": "string", "description": "Shown after the name, such as \"softened\"." },
           "group": { "type": "string", "description": "A heading in the Text view, such as \"Frosting\". Put ingredients of one group next to each other." },
-          "recipe": { "type": "string", "description": "The folder name of another recipe that makes this ingredient." }
+          "recipe": { "type": "string", "description": "The folder name of another recipe that makes this ingredient." },
+          "when": {
+            "type": "object",
+            "additionalProperties": { "type": "string" },
+            "description": "The options that this ingredient is for, as choice id and option id, such as { \"flour\": \"chickpea\" }. Leave it out for an ingredient that all options use."
+          }
         }
       }
     },
@@ -74,10 +106,38 @@
             "items": { "type": "string" },
             "description": "Ids of ingredients and earlier steps. Leave this out for a prep step, such as \"Preheat oven\"."
           },
-          "text": { "type": "string", "description": "The full instruction for the Text and Cook views. If you leave it out, they show the action." }
+          "text": { "type": "string", "description": "The full instruction for the Text and Cook views. If you leave it out, they show the action." },
+          "when": {
+            "type": "object",
+            "additionalProperties": { "type": "string" },
+            "description": "The options that this step is for, as choice id and option id, such as { \"flour\": \"chickpea\" }. Leave it out for a step that all options use. A step whose inputs are all for other options is left out too."
+          }
         }
       }
     },
-    "notes": { "type": "array", "items": { "type": "string" } }
+    "notes": { "type": "array", "items": { "type": "string" } },
+    "nutrition": {
+      "type": "array",
+      "description": "Estimated nutrition, such as one entry per 100 g and one per cookie. The values do not scale. In a recipe with choices, use \"when\" so that each combination of options has its values.",
+      "items": {
+        "type": "object",
+        "required": ["per", "kcal", "protein", "carbs", "fat"],
+        "additionalProperties": false,
+        "properties": {
+          "per": { "type": "string", "description": "The portion, such as \"100 g\" or \"1 cookie\"." },
+          "kcal": { "type": "number", "description": "Calories, in kcal." },
+          "protein": { "type": "number", "description": "Protein, in grams." },
+          "fat": { "type": "number", "description": "Fat, in grams." },
+          "carbs": { "type": "number", "description": "Carbohydrate, in grams. This includes the sugar and the fiber." },
+          "sugar": { "type": "number", "description": "Sugar, in grams." },
+          "fiber": { "type": "number", "description": "Fiber, in grams." },
+          "when": {
+            "type": "object",
+            "additionalProperties": { "type": "string" },
+            "description": "The options that these values are for, as choice id and option id, such as { \"flour\": \"chickpea\", \"mix-in\": \"dates\" }. Leave out a choice that does not change the values."
+          }
+        }
+      }
+    }
   }
 }

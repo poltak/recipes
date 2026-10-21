@@ -104,6 +104,54 @@ Steps:
 
 The order of `inputs` sets the order of the rows in the table. Each step goes in the first column to the right of all its inputs.
 
+### Versions of a recipe
+
+If you make a recipe in different versions, add `choices`. The page shows a row of buttons for each choice, and the cook can select any combination of options.
+
+```json
+"choices": [
+  { "id": "flour", "label": "Flour", "options": [
+    { "id": "almond", "label": "almond flour" },
+    { "id": "chickpea", "label": "chickpea flour", "note": "Chickpea flour is stickier, so this version has milk." }
+  ] },
+  { "id": "mix-in", "label": "Mix-in", "options": [
+    { "id": "chocolate", "label": "chocolate chips" },
+    { "id": "raisins", "label": "raisins" }
+  ] }
+],
+"ingredients": [
+  { "id": "almond-flour", "amount": "40 g", "name": "almond flour", "when": { "flour": "almond" } },
+  { "id": "chickpea-flour", "amount": "40 g", "name": "chickpea flour", "when": { "flour": "chickpea" } },
+  { "id": "milk", "amount": "10 g", "name": "milk", "when": { "flour": "chickpea" } },
+  { "id": "chips", "amount": "30 g", "name": "chocolate chips", "when": { "mix-in": "chocolate" } },
+  { "id": "raisins", "amount": "30 g", "name": "raisins", "when": { "mix-in": "raisins" } }
+],
+"steps": [
+  { "id": "dough", "action": "mix", "inputs": ["almond-flour", "chickpea-flour", "milk"] },
+  { "action": "fold in the {mix-in}", "inputs": ["dough", "chips", "raisins"] }
+]
+```
+
+- The first option of each choice is the default.
+- An ingredient or a step with `when` is only for those options. The other ingredients and steps are for all options.
+- Put the ingredients of all the options in the step that uses them. The page shows only the ingredients of the selected options. If all the inputs of a step are for other options, the page does not show the step.
+- In `action` and `text`, `{mix-in}` shows the label of the selected option.
+- The page address keeps the options, such as `recipe.html?r=cookies&flour=chickpea`. The page also remembers the options that you used last.
+- `pnpm build` checks each combination of options.
+
+### Nutrition
+
+`nutrition` lists estimated values for a portion. The values do not change when you scale the recipe.
+
+```json
+"nutrition": [
+  { "per": "100 g", "kcal": 480, "protein": 11, "fat": 30, "carbs": 42, "sugar": 24, "fiber": 6 },
+  { "per": "1 cookie", "kcal": 98, "protein": 2.1, "fat": 6.5, "carbs": 7.7, "sugar": 4.8, "fiber": 1.2 }
+]
+```
+
+`per`, `kcal`, `protein`, `fat`, and `carbs` are necessary. The values are in kcal and grams, and `carbs` includes the sugar and the fiber. In a recipe with choices, give each entry a `when`, such as `{ "flour": "chickpea" }`. Leave out a choice that does not change the values. Each combination of options must have values, and only one entry for each portion. The MCP server tells chat apps to calculate these values when they add or change a recipe.
+
 ## Add pictures
 
 1. Make the picture, for example with ChatGPT.
@@ -133,7 +181,7 @@ The site is at https://recipes.hoian-embroidery.workers.dev/.
 
 The Worker has an MCP server. ChatGPT, and other chat apps that can use MCP servers, can use it to read, add, and change recipes. Each saved recipe is a commit to `main`, so it is on the site after the next deploy, in 1 to 2 minutes.
 
-The server has five tools: `list_recipes`, `get_recipe`, `check_recipe`, `create_recipe`, and `update_recipe`. The tools tell the chat app the recipe format and the rules for steps and inputs. The server checks each recipe with the same code as `pnpm build`, so a saved recipe cannot stop a deploy. The server does not save pictures. When it changes a recipe, it keeps the pictures that the recipe has.
+The server has five tools: `list_recipes`, `get_recipe`, `check_recipe`, `create_recipe`, and `update_recipe`. The tools tell the chat app the recipe format, the rules for steps and inputs, how to write versions of a recipe, and how to calculate nutrition. The server checks each recipe with the same code as `pnpm build`, so a saved recipe cannot stop a deploy. The server does not save pictures. When it changes a recipe, it keeps the pictures that the recipe has.
 
 Do this one time:
 

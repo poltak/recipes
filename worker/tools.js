@@ -26,6 +26,24 @@ Amounts:
 - Use "group" for headings in the ingredient list, such as "Dough" and "Filling". Keep the ingredients of one group together.
 - If another recipe on the site makes an ingredient, set "recipe" to the slug of that recipe.
 
+Choices (versions of one recipe):
+- If the user makes a recipe in different versions, such as with almond flour or with chickpea flour, add "choices". Do not make a second recipe.
+- A choice has an "id", a "label", and two or more "options". Example: { "id": "mix-in", "label": "Mix-in", "options": [{ "id": "chocolate", "label": "chocolate chips" }, { "id": "raisins", "label": "raisins" }] }. The first option is the default.
+- Write the label of an option as it reads in a sentence, such as "chocolate chips". Use "note" on an option to tell why the version is different, such as "Chickpea flour is stickier, so this version has milk."
+- Give an ingredient a "when" if it is only for some options, such as "when": { "flour": "chickpea" }. A version can have more ingredients than another, such as chickpea flour and milk in place of almond flour.
+- Put the ingredients of all the options in the inputs of the step that uses them, such as "inputs": ["dough", "chips", "raisins"]. The site shows only the ingredients of the selected options. A step whose inputs are all for other options is left out.
+- To show the selected option in a step, write the choice id in braces, such as "fold in the {mix-in}".
+- Use "when" on a step only for a step that some options do not have, such as a prep step "Soak the dates in hot water".
+- The cook can select any combination of options. The tools check each combination and tell you about its problems.
+
+Nutrition:
+- Always add "nutrition" when you add or change a recipe. If the ingredients change, calculate the values again.
+- Calculate the values from the ingredients and their amounts. Use standard nutrition data, such as USDA FoodData Central, or the label of a product that the user names.
+- Give an entry "per 100 g" of the finished food. If the recipe makes servings or pieces, such as "16 cookies", also give an entry per serving or per piece, such as "1 cookie".
+- For baked or cooked food, use the weight after cooking. Baking removes water, so 100 g of cookies has more calories than 100 g of dough. If the user does not give that weight, estimate it.
+- Each entry has "per", "kcal", "protein", "fat", "carbs", "sugar", and "fiber". The values after "per" are numbers: kcal and grams. "carbs" includes the sugar and the fiber.
+- In a recipe with choices, each combination of options needs its entries. Use "when" to name the options, such as "when": { "flour": "chickpea", "mix-in": "dates" }. If a choice does not change the values, leave it out of "when".
+
 Other fields: "description" is one or two sentences for the recipe card. "yield" is what the recipe makes, such as "12 pancakes". "time" has "prep", "cook", and "total", such as "15 min". "tags" are short lowercase words. "source" tells where the recipe comes from. "notes" are tips.
 
 Use the amounts, times, and temperatures of the source. Do not invent them. If something is not clear, ask the user.
