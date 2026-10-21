@@ -1,0 +1,148 @@
+{
+  "$schema": "../recipe.schema.json",
+  "title": "Homemade Golden Syrup",
+  "description": "Simple homemade golden syrup for dumplings, baking and pancakes. Choose white sugar, a white/yellow cane sugar blend, or all yellow cane sugar.",
+  "yield": "640 g syrup (approximately 470 mL)",
+  "time": { "prep": "5 min", "cook": "45–60 min", "total": "50–65 min" },
+  "tags": ["syrup", "sauce", "dessert", "baking", "homemade"],
+  "choices": [
+    {
+      "id": "sugar",
+      "label": "Sugar",
+      "options": [
+        {
+          "id": "white",
+          "label": "white sugar",
+          "note": "Closest to classic golden syrup; caramelise the first 100 g until deep amber."
+        },
+        {
+          "id": "mixed",
+          "label": "half white, half yellow cane sugar",
+          "note": "Darker and more caramel-like; use white sugar for the first caramel."
+        },
+        {
+          "id": "yellow",
+          "label": "yellow cane sugar (đường mía)",
+          "note": "Strongest cane/molasses flavour. Colour is dark from the start, so take care not to burn the caramel."
+        }
+      ]
+    }
+  ],
+  "ingredients": [
+    {
+      "id": "sugar-c-white",
+      "amount": "100 g",
+      "metric": "100 g",
+      "name": "white sugar",
+      "group": "Caramel",
+      "when": { "sugar": "white" }
+    },
+    {
+      "id": "sugar-c-mixed",
+      "amount": "100 g",
+      "metric": "100 g",
+      "name": "white sugar",
+      "group": "Caramel",
+      "when": { "sugar": "mixed" }
+    },
+    {
+      "id": "sugar-c-yellow",
+      "amount": "100 g",
+      "metric": "100 g",
+      "name": "yellow cane sugar (đường mía)",
+      "group": "Caramel",
+      "when": { "sugar": "yellow" }
+    },
+    { "id": "water-c", "amount": "30 mL", "metric": "30 mL", "name": "water", "group": "Caramel" },
+    {
+      "id": "sugar-f-white",
+      "amount": "400 g",
+      "metric": "400 g",
+      "name": "white sugar",
+      "group": "Syrup",
+      "when": { "sugar": "white" }
+    },
+    {
+      "id": "sugar-f-mixed-white",
+      "amount": "150 g",
+      "metric": "150 g",
+      "name": "white sugar",
+      "group": "Syrup",
+      "when": { "sugar": "mixed" }
+    },
+    {
+      "id": "sugar-f-mixed-yellow",
+      "amount": "250 g",
+      "metric": "250 g",
+      "name": "yellow cane sugar",
+      "group": "Syrup",
+      "when": { "sugar": "mixed" }
+    },
+    {
+      "id": "sugar-f-yellow",
+      "amount": "400 g",
+      "metric": "400 g",
+      "name": "yellow cane sugar",
+      "group": "Syrup",
+      "when": { "sugar": "yellow" }
+    },
+    { "id": "water-f", "amount": "270 mL", "metric": "270 mL", "name": "water", "group": "Syrup" },
+    { "id": "lemon", "amount": "1 tbsp.", "metric": "15 mL", "name": "lemon juice", "group": "Syrup" },
+    {
+      "id": "peel",
+      "amount": "1 strip",
+      "name": "lemon peel",
+      "note": "optional, remove before storing",
+      "group": "Syrup"
+    }
+  ],
+  "steps": [
+    {
+      "id": "caramel",
+      "action": "caramelise gently",
+      "inputs": ["sugar-c-white", "sugar-c-mixed", "sugar-c-yellow", "water-c"],
+      "text": "Put the first 100 g sugar and 30 mL water in a heavy saucepan. Heat over medium heat until amber; swirl instead of stirring. With yellow cane sugar, colour is harder to judge, so avoid burning it."
+    },
+    {
+      "id": "dissolve",
+      "action": "add sugar and water",
+      "inputs": [
+        "caramel",
+        "sugar-f-white",
+        "sugar-f-mixed-white",
+        "sugar-f-mixed-yellow",
+        "sugar-f-yellow",
+        "water-f"
+      ],
+      "text": "Carefully add the remaining 400 g sugar and 270 mL water. It may bubble, splutter and briefly harden. Stir gently until any hard caramel dissolves."
+    },
+    {
+      "id": "simmer",
+      "action": "simmer 40–55 min",
+      "inputs": ["dissolve", "lemon", "peel"],
+      "text": "Add lemon juice and, if using, the peel. Simmer uncovered on very low heat for 40–55 minutes, without stirring, until syrupy. It gets much thicker as it cools; avoid reducing it to a hard caramel."
+    },
+    {
+      "action": "cool and jar",
+      "inputs": ["simmer"],
+      "text": "Remove the lemon peel. Let the syrup cool, then transfer to a clean dry jar. If too thick once cool, loosen gently with a little hot water. Store sealed, use a clean spoon, and discard if mould develops."
+    }
+  ],
+  "notes": [
+    "Yield is an estimate based on around 640 g of finished syrup. Actual volume and nutrition per 100 g depend on how far the water cooks off; expect roughly 450–500 mL of pourable syrup.",
+    "Yellow cane sugar changes flavour and colour far more than calorie content. Nutrition is estimated for all sugar options using typical sugar values.",
+    "Hot caramel and syrup can cause serious burns; add water carefully."
+  ],
+  "nutrition": [
+    { "per": "100 g", "kcal": 313, "protein": 0, "fat": 0, "carbs": 78.3, "sugar": 78.1, "fiber": 0 },
+    {
+      "per": "1 tbsp (15 mL, about 20 g)",
+      "kcal": 63,
+      "protein": 0,
+      "fat": 0,
+      "carbs": 15.7,
+      "sugar": 15.6,
+      "fiber": 0
+    }
+  ]
+}
