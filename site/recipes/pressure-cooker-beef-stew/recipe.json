@@ -1,0 +1,89 @@
+{
+  "$schema": "../recipe.schema.json",
+  "title": "Pressure Cooker Beef Stew",
+  "description": "A rich, savoury beef, potato and carrot stew with tomatoes, onion, garlic, fish sauce and Vietnamese stock powder. Made in a stovetop pressure cooker.",
+  "yield": "4 servings",
+  "time": { "prep": "15 min", "cook": "25 min at pressure" },
+  "tags": ["beef", "stew", "pressure-cooker", "dinner", "vietnam"],
+  "ingredients": [
+    { "id": "oil", "amount": "1 tbsp", "name": "cooking oil" },
+    { "id": "onion", "amount": "150 g", "name": "onion", "note": "chopped" },
+    { "id": "garlic", "amount": "15–20 g", "name": "garlic", "note": "chopped" },
+    {
+      "id": "beef",
+      "amount": "500–600 g",
+      "name": "beef",
+      "note": "cut into large chunks; nạm bò or bắp bò work well"
+    },
+    { "id": "tomatoes", "amount": "214 g", "name": "tomatoes", "note": "roughly chopped" },
+    { "id": "fish", "amount": "2 tbsp", "name": "fish sauce" },
+    { "id": "soy", "amount": "1 tbsp", "name": "soy sauce" },
+    { "id": "stock", "amount": "2 tsp", "name": "stock powder (hạt nêm)" },
+    { "id": "msg", "amount": "1/4 tsp", "name": "MSG" },
+    { "id": "sugar", "amount": "1 tsp", "name": "sugar" },
+    { "id": "pepper", "name": "black pepper", "note": "to taste" },
+    { "id": "water", "amount": "350–400 ml", "name": "water" },
+    { "id": "potatoes", "amount": "450–500 g", "name": "potatoes", "note": "large chunks" },
+    { "id": "carrots", "amount": "170 g", "name": "carrots", "note": "large chunks" },
+    {
+      "id": "fish-finish",
+      "amount": "1 tsp",
+      "name": "fish sauce",
+      "note": "optional, to adjust seasoning after cooking"
+    }
+  ],
+  "steps": [
+    {
+      "id": "saute",
+      "action": "Sauté onion and garlic",
+      "inputs": ["oil", "onion", "garlic"],
+      "text": "Heat the oil in the open pressure cooker. Sauté the chopped onion for about 1–2 minutes until it starts to soften; add the garlic for the last 30–60 seconds, avoiding burning it."
+    },
+    {
+      "id": "brown",
+      "action": "Brown beef 6–8 min",
+      "inputs": ["saute", "beef"],
+      "text": "Add beef and brown for 6–8 minutes, turning occasionally to develop colour."
+    },
+    {
+      "id": "tomato-base",
+      "action": "Cook tomatoes 3–5 min",
+      "inputs": ["brown", "tomatoes"],
+      "text": "Add chopped tomatoes and cook for 3–5 minutes, until they soften and begin to break down."
+    },
+    {
+      "id": "seasoned",
+      "action": "Add seasonings and water",
+      "inputs": ["tomato-base", "fish", "soy", "stock", "msg", "sugar", "pepper", "water"],
+      "text": "Add fish sauce, soy sauce, stock powder, MSG, sugar, black pepper and 350–400 ml water. Stir and scrape any browned bits off the base."
+    },
+    {
+      "id": "loaded",
+      "action": "Add potatoes and carrots",
+      "inputs": ["seasoned", "potatoes", "carrots"],
+      "text": "Place potato and carrot chunks on top. Close and lock the pressure cooker lid."
+    },
+    {
+      "id": "cooked",
+      "action": "Pressure cook 25 min",
+      "inputs": ["loaded"],
+      "text": "On the induction hob, use about 2000 W to reach full pressure. Reduce to the lowest setting that keeps full pressure (often around 600–800 W with gentle regulator movement). Start the 25-minute timer once full pressure is reached."
+    },
+    {
+      "id": "rested",
+      "action": "Natural release 10 min",
+      "inputs": ["cooked"],
+      "text": "Turn the heat off. Let the cooker depressurize naturally for 10 minutes, then carefully release any remaining pressure according to its instructions before opening."
+    },
+    {
+      "action": "Taste and serve",
+      "inputs": ["rested", "fish-finish"],
+      "text": "Stir and taste. If needed, add up to 1 tsp extra fish sauce; taste again. Serve with rice or bread."
+    }
+  ],
+  "notes": [
+    "This is the tomato-and-onion version; not the later no-tomato batch scaled for 430 g beef.",
+    "Chunky vegetables cooked for 25 minutes will be soft. For firmer potatoes and carrots, pressure cook the beef first, then add vegetables and pressure cook about 4 more minutes.",
+    "Watt settings vary by cooker; maintain pressure based on your cooker’s regulator and instructions rather than relying on a fixed watt number."
+  ]
+}
