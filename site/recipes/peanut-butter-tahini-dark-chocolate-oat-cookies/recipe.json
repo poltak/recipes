@@ -1,10 +1,41 @@
 {
   "$schema": "../recipe.schema.json",
-  "title": "Peanut Butter, Tahini & Dark Chocolate Oat Cookies",
-  "description": "Oat cookies with peanut butter, tahini, almond flour, honey, pumpkin seeds and dark chocolate. Current almond-flour batch with no added milk.",
+  "title": "Peanut Butter, Tahini & Oat Cookies",
+  "description": "Oat cookies with peanut butter, tahini, honey and pumpkin seeds. Choose almond or chickpea flour and a dark chocolate, raisin or date mix-in.",
   "yield": "1 batch",
   "time": { "cook": "9–11 min" },
   "tags": ["cookies", "baking", "oats", "chocolate"],
+  "choices": [
+    {
+      "id": "flour",
+      "label": "Flour",
+      "options": [
+        { "id": "almond", "label": "almond flour", "note": "Richer and softer; no added milk." },
+        {
+          "id": "chickpea",
+          "label": "chickpea flour",
+          "note": "Use 40 g chickpea flour plus 10 g milk. The flour thickens the dough and makes it stickier."
+        }
+      ]
+    },
+    {
+      "id": "mix-in",
+      "label": "Mix-in",
+      "options": [
+        {
+          "id": "chocolate",
+          "label": "dark chocolate",
+          "note": "30 g dark chocolate (chips or chopped), the latest default batch."
+        },
+        { "id": "raisins", "label": "raisins", "note": "45 g raisins in place of the dark chocolate." },
+        {
+          "id": "dates",
+          "label": "chopped dates",
+          "note": "40 g pitted, chopped dates in place of the dark chocolate."
+        }
+      ]
+    }
+  ],
   "ingredients": [
     { "id": "peanut-butter", "amount": "60 g", "name": "peanut butter" },
     { "id": "tahini", "amount": "20 g", "name": "tahini" },
@@ -12,12 +43,28 @@
     { "id": "sugar", "amount": "9 g", "name": "sugar" },
     { "id": "egg", "amount": "1 large", "name": "egg" },
     { "id": "vanilla", "amount": "1 tsp", "name": "vanilla extract" },
+    { "id": "milk", "amount": "10 g", "name": "milk", "when": { "flour": "chickpea" } },
     { "id": "soda", "amount": "1/2 tsp", "name": "baking soda" },
     { "id": "salt", "amount": "1 g", "name": "fine salt" },
-    { "id": "dark-chocolate", "amount": "30 g", "name": "dark chocolate", "note": "chips or chopped" },
+    {
+      "id": "dark-chocolate",
+      "amount": "30 g",
+      "name": "dark chocolate",
+      "note": "chips or chopped",
+      "when": { "mix-in": "chocolate" }
+    },
+    { "id": "raisins", "amount": "45 g", "name": "raisins", "when": { "mix-in": "raisins" } },
+    {
+      "id": "dates",
+      "amount": "40 g",
+      "name": "dates",
+      "note": "pitted and finely chopped",
+      "when": { "mix-in": "dates" }
+    },
     { "id": "pumpkin-seeds", "amount": "10 g", "name": "pumpkin seeds" },
     { "id": "oats", "amount": "90 g", "name": "rolled oats" },
-    { "id": "almond-flour", "amount": "40 g", "name": "almond flour" }
+    { "id": "almond-flour", "amount": "40 g", "name": "almond flour", "when": { "flour": "almond" } },
+    { "id": "chickpea-flour", "amount": "40 g", "name": "chickpea flour", "when": { "flour": "chickpea" } }
   ],
   "steps": [
     {
@@ -27,26 +74,26 @@
     {
       "id": "wet",
       "action": "Mix wet ingredients",
-      "inputs": ["peanut-butter", "tahini", "honey", "sugar", "egg", "vanilla"],
-      "text": "Mix the peanut butter, tahini, honey, sugar, egg and vanilla together until smooth."
+      "inputs": ["peanut-butter", "tahini", "honey", "sugar", "egg", "vanilla", "milk"],
+      "text": "Mix peanut butter, tahini, honey, sugar, egg and vanilla until smooth. For the chickpea flour version, add the 10 g milk here too."
     },
     {
       "id": "seasoned-wet",
       "action": "Mix in soda + salt",
       "inputs": ["wet", "soda", "salt"],
-      "text": "Stir the baking soda and fine salt thoroughly into the wet mixture so they disperse evenly before the dough thickens."
+      "text": "Stir the baking soda and salt thoroughly into the wet mixture so they disperse before the dough thickens."
     },
     {
       "id": "wet-with-additions",
-      "action": "Fold in chocolate + seeds",
-      "inputs": ["seasoned-wet", "dark-chocolate", "pumpkin-seeds"],
-      "text": "Fold the dark chocolate and pumpkin seeds into the wet mixture before adding the oats."
+      "action": "Fold in {mix-in} + seeds",
+      "inputs": ["seasoned-wet", "dark-chocolate", "raisins", "dates", "pumpkin-seeds"],
+      "text": "Fold in the {mix-in} and pumpkin seeds with the wet mixture, before the oats go in. This makes them easier to distribute evenly."
     },
     {
       "id": "dough",
-      "action": "Add oats + almond flour",
-      "inputs": ["wet-with-additions", "oats", "almond-flour"],
-      "text": "Add the rolled oats and almond flour last, and fold just until combined. The dough gets clumpy quickly, so make sure all the other ingredients are mixed evenly first. No added milk in this version."
+      "action": "Add oats + {flour}",
+      "inputs": ["wet-with-additions", "oats", "almond-flour", "chickpea-flour"],
+      "text": "Fold in the rolled oats and {flour} last, just until combined. The dough thickens and clumps quickly, so avoid overmixing."
     },
     {
       "id": "shaped",
@@ -58,7 +105,7 @@
       "id": "baked",
       "action": "Bake 9–11 min",
       "inputs": ["shaped"],
-      "text": "Bake at 175°C (350°F) for about 9–11 minutes; check earlier if making smaller cookies."
+      "text": "Bake at 175°C (350°F) for about 9–11 minutes; check earlier if making smaller cookies. Make sure the chickpea flour version cooks through."
     },
     {
       "action": "Cool 5 min",
@@ -67,9 +114,73 @@
     }
   ],
   "notes": [
-    "Latest almond-flour batch: 40 g honey, 9 g sugar, 30 g dark chocolate, 10 g pumpkin seeds only, and no milk.",
-    "Mix the baking soda, salt, chocolate and pumpkin seeds into the wet mixture before adding the oats and almond flour, because the oats make the dough clumpy and hard to mix evenly.",
-    "This uses peanut butter, not almond butter.",
-    "Cookie count depends on how large you scoop them."
+    "Default (latest) version: 40 g honey, 9 g sugar, 40 g almond flour, 30 g dark chocolate, 10 g pumpkin seeds, and no milk.",
+    "Chickpea flour replaces 40 g almond flour; add 10 g milk with the wet ingredients.",
+    "Raisin option uses 45 g raisins; date option uses 40 g chopped, pitted dates. Both replace the 30 g chocolate while the rest of this recipe stays unchanged.",
+    "Stir baking soda, salt, pumpkin seeds and the selected mix-in into the wet ingredients before adding oats and flour, which make the dough clumpy.",
+    "Nutrition is estimated from standard ingredient data and an approximate baked weight (around 332 g for the default batch). Actual values depend on brands and water loss in baking.",
+    "Uses peanut butter, not almond butter. Cookie count depends on scoop size."
+  ],
+  "nutrition": [
+    {
+      "per": "100 g",
+      "kcal": 461,
+      "protein": 16.4,
+      "fat": 27.1,
+      "carbs": 42.9,
+      "sugar": 16.8,
+      "fiber": 6.8,
+      "when": { "flour": "almond", "mix-in": "chocolate" }
+    },
+    {
+      "per": "100 g",
+      "kcal": 429,
+      "protein": 15.2,
+      "fat": 22.5,
+      "carbs": 47.3,
+      "sugar": 21.7,
+      "fiber": 6.1,
+      "when": { "flour": "almond", "mix-in": "raisins" }
+    },
+    {
+      "per": "100 g",
+      "kcal": 429,
+      "protein": 15.3,
+      "fat": 22.8,
+      "carbs": 46.3,
+      "sugar": 21.6,
+      "fiber": 6.7,
+      "when": { "flour": "almond", "mix-in": "dates" }
+    },
+    {
+      "per": "100 g",
+      "kcal": 432,
+      "protein": 16.4,
+      "fat": 21.3,
+      "carbs": 47,
+      "sugar": 17.5,
+      "fiber": 6.8,
+      "when": { "flour": "chickpea", "mix-in": "chocolate" }
+    },
+    {
+      "per": "100 g",
+      "kcal": 402,
+      "protein": 15.3,
+      "fat": 17,
+      "carbs": 51.1,
+      "sugar": 22.3,
+      "fiber": 6.1,
+      "when": { "flour": "chickpea", "mix-in": "raisins" }
+    },
+    {
+      "per": "100 g",
+      "kcal": 401,
+      "protein": 15.4,
+      "fat": 17.2,
+      "carbs": 50.3,
+      "sugar": 22.2,
+      "fiber": 6.7,
+      "when": { "flour": "chickpea", "mix-in": "dates" }
+    }
   ]
 }
