@@ -1,9 +1,11 @@
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
-import { readFile } from 'node:fs/promises'
+import { readdir, readFile } from 'node:fs/promises'
 import { applyChoices, checkRecipe, combinations, layoutTable, validateRecipe } from '../site/js/model.js'
 
-const brownies = JSON.parse(await readFile(new URL('../site/recipes/espresso-brownies/recipe.json', import.meta.url), 'utf8'))
+// A copy of the Cooking For Engineers brownie recipe, to test the table layout.
+const brownies = JSON.parse(await readFile(new URL('./fixtures/espresso-brownies.json', import.meta.url), 'utf8'))
+const RECIPES = new URL('../site/recipes/', import.meta.url)
 
 // One short string per table row, such as "butter | melt | mix(4) | ...".
 function describe(layout) {
@@ -56,10 +58,11 @@ test('a recipe with two finished parts puts empty cells after the shorter one', 
   assert.deepEqual(describe(layoutTable(recipe)), ['a | mix(r2) | bake(r2)', 'b', 'c | chop | -'])
 })
 
-test('every sample recipe is valid', async () => {
-  for (const slug of ['espresso-brownies', 'basic-pancakes', 'shrimp-scampi', 'beef-stroganoff', 'chocolate-cake', 'buttercream-frosting']) {
-    const recipe = JSON.parse(await readFile(new URL(`../site/recipes/${slug}/recipe.json`, import.meta.url), 'utf8'))
-    assert.deepEqual(validateRecipe(recipe), [], slug)
+test('every recipe on the site is valid', async () => {
+  const folders = (await readdir(RECIPES, { withFileTypes: true })).filter((entry) => entry.isDirectory())
+  for (const { name } of folders) {
+    const recipe = JSON.parse(await readFile(new URL(`${name}/recipe.json`, RECIPES), 'utf8'))
+    assert.deepEqual(validateRecipe(recipe), [], name)
   }
 })
 

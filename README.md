@@ -30,7 +30,7 @@ pnpm run deploy   # test, build, and deploy to Cloudflare
 ```
 site/                     the website (Cloudflare serves the files in this folder)
   index.html              all recipes
-  recipe.html             one recipe: recipe.html?r=espresso-brownies
+  recipe.html             one recipe: recipe.html?r=pressure-cooker-beef-stew
   sw.js                   service worker (offline use)
   js/model.js             recipe checks and the table layout
   js/amount.js            amounts and scaling
@@ -158,7 +158,7 @@ If you make a recipe in different versions, add `choices`. The page shows a row 
 2. Make it smaller. Pictures from ChatGPT are often 2 to 3 MB. On a Mac, this command makes a JPEG with a longest side of 1600 pixels:
 
    ```sh
-   sips -Z 1600 -s format jpeg -s formatOptions 80 picture.png --out site/recipes/espresso-brownies/card.jpg
+   sips -Z 1600 -s format jpeg -s formatOptions 80 picture.png --out site/recipes/pressure-cooker-beef-stew/card.jpg
    ```
 
 3. Add the file to `images` in `recipe.json`. The first picture is also the picture on the recipe card. A recipe with no pictures gets a small drawing of its table on the card.

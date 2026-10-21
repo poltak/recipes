@@ -1,5 +1,5 @@
 {
-  "$schema": "../recipe.schema.json",
+  "$schema": "../../site/recipes/recipe.schema.json",
   "title": "Espresso Brownies",
   "description": "Fudgy cocoa brownies with a shot of espresso in the batter.",
   "yield": "one 8×8-in pan",
