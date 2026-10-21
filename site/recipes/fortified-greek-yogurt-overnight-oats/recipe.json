@@ -1,7 +1,7 @@
 {
   "$schema": "../recipe.schema.json",
   "title": "Fortified Greek Yogurt Overnight Oats",
-  "description": "Creamy overnight oats with fortified Greek yogurt, skim milk powder, flax, chia and nuts. Choose the high-protein Greek yogurt version or a peanut butter version with no yogurt.",
+  "description": "Creamy overnight oats with skim milk powder, flax, chia and nuts. Choose fortified Greek yogurt, peanut butter, or a plain version with neither.",
   "yield": "1 serving",
   "tags": ["breakfast", "overnight-oats", "oats", "high-protein", "yogurt"],
   "choices": [
@@ -9,12 +9,13 @@
       "id": "version",
       "label": "Version",
       "options": [
-        { "id": "greek-yogurt", "label": "fortified Greek yogurt", "note": "The default high-protein version." },
+        { "id": "greek-yogurt", "label": "fortified Greek yogurt", "note": "The high-protein yogurt version." },
         {
           "id": "peanut-butter",
           "label": "peanut butter",
           "note": "No Greek yogurt; uses 15 g peanut butter instead."
-        }
+        },
+        { "id": "plain", "label": "nothing extra", "note": "No Greek yogurt and no peanut butter." }
       ]
     }
   ],
@@ -52,7 +53,7 @@
       "id": "mix",
       "action": "add milk and {version}",
       "inputs": ["dry", "milk", "greek-yogurt", "peanut-butter"],
-      "text": "Pour in the milk and add the {version}. Stir until evenly combined."
+      "text": "Pour in the milk and add {version}. Stir until evenly combined."
     },
     { "id": "top", "action": "top with nuts", "inputs": ["mix", "nuts"], "text": "Top with the mixed nuts." },
     { "action": "chill overnight", "inputs": ["top"], "text": "Cover and chill overnight. Eat cold." }
@@ -100,6 +101,26 @@
       "sugar": 7.5,
       "fiber": 5,
       "when": { "version": "peanut-butter" }
+    },
+    {
+      "per": "1 serving",
+      "kcal": 533,
+      "protein": 26.7,
+      "fat": 22.3,
+      "carbs": 61,
+      "sugar": 20,
+      "fiber": 13,
+      "when": { "version": "plain" }
+    },
+    {
+      "per": "100 g",
+      "kcal": 197,
+      "protein": 9.9,
+      "fat": 8.3,
+      "carbs": 22.6,
+      "sugar": 7.4,
+      "fiber": 4.8,
+      "when": { "version": "plain" }
     }
   ]
 }
