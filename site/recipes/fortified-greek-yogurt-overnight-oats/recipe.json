@@ -1,0 +1,105 @@
+{
+  "$schema": "../recipe.schema.json",
+  "title": "Fortified Greek Yogurt Overnight Oats",
+  "description": "Creamy overnight oats with fortified Greek yogurt, skim milk powder, flax, chia and nuts. Choose the high-protein Greek yogurt version or a peanut butter version with no yogurt.",
+  "yield": "1 serving",
+  "tags": ["breakfast", "overnight-oats", "oats", "high-protein", "yogurt"],
+  "choices": [
+    {
+      "id": "version",
+      "label": "Version",
+      "options": [
+        { "id": "greek-yogurt", "label": "fortified Greek yogurt", "note": "The default high-protein version." },
+        {
+          "id": "peanut-butter",
+          "label": "peanut butter",
+          "note": "No Greek yogurt; uses 15 g peanut butter instead."
+        }
+      ]
+    }
+  ],
+  "ingredients": [
+    { "id": "oats", "amount": "50 g", "metric": "50 g", "name": "oats" },
+    { "id": "milk", "amount": "170 g", "metric": "170 g", "name": "UHT milk" },
+    {
+      "id": "greek-yogurt",
+      "amount": "50 g",
+      "metric": "50 g",
+      "name": "fortified Greek yogurt",
+      "note": "homemade",
+      "when": { "version": "greek-yogurt" }
+    },
+    {
+      "id": "peanut-butter",
+      "amount": "15 g",
+      "metric": "15 g",
+      "name": "peanut butter",
+      "when": { "version": "peanut-butter" }
+    },
+    { "id": "milk-powder", "amount": "20 g", "metric": "20 g", "name": "skim milk powder" },
+    { "id": "flax", "amount": "10 g", "metric": "10 g", "name": "ground flax" },
+    { "id": "chia", "amount": "10 g", "metric": "10 g", "name": "chia seeds" },
+    { "id": "nuts", "amount": "10 g", "metric": "10 g", "name": "mixed nuts" }
+  ],
+  "steps": [
+    {
+      "id": "dry",
+      "action": "combine dry ingredients",
+      "inputs": ["oats", "milk-powder", "flax", "chia"],
+      "text": "Add the oats, skim milk powder, ground flax and chia seeds to a jar or bowl."
+    },
+    {
+      "id": "mix",
+      "action": "add milk and {version}",
+      "inputs": ["dry", "milk", "greek-yogurt", "peanut-butter"],
+      "text": "Pour in the milk and add the {version}. Stir until evenly combined."
+    },
+    { "id": "top", "action": "top with nuts", "inputs": ["mix", "nuts"], "text": "Top with the mixed nuts." },
+    { "action": "chill overnight", "inputs": ["top"], "text": "Cover and chill overnight. Eat cold." }
+  ],
+  "notes": [
+    "Nutrition is estimated from standard ingredient values and the current homemade fortified Greek yogurt estimate."
+  ],
+  "nutrition": [
+    {
+      "per": "1 serving",
+      "kcal": 595,
+      "protein": 31,
+      "fat": 25,
+      "carbs": 66,
+      "sugar": 25,
+      "fiber": 13,
+      "when": { "version": "greek-yogurt" }
+    },
+    {
+      "per": "100 g",
+      "kcal": 186,
+      "protein": 9.7,
+      "fat": 7.8,
+      "carbs": 20.6,
+      "sugar": 7.8,
+      "fiber": 4.1,
+      "when": { "version": "greek-yogurt" }
+    },
+    {
+      "per": "1 serving",
+      "kcal": 622,
+      "protein": 30.5,
+      "fat": 29.8,
+      "carbs": 64,
+      "sugar": 21.5,
+      "fiber": 14.2,
+      "when": { "version": "peanut-butter" }
+    },
+    {
+      "per": "100 g",
+      "kcal": 218,
+      "protein": 10.7,
+      "fat": 10.5,
+      "carbs": 22.5,
+      "sugar": 7.5,
+      "fiber": 5,
+      "when": { "version": "peanut-butter" }
+    }
+  ]
+}
