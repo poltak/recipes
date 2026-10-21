@@ -1,0 +1,321 @@
+{
+  "$schema": "../recipe.schema.json",
+  "title": "Creamy Beef & Tomato Protein Pasta",
+  "description": "Whole-wheat farfalle with lean beef, blended tomato sauce, oregano, vegetables and a creamy Greek-yogurt finish. One hearty serving, with veg and no-yogurt options.",
+  "yield": "1 large serving",
+  "time": { "prep": "10 min", "cook": "20–25 min", "total": "30–35 min" },
+  "tags": ["pasta", "beef", "high-protein", "dinner", "tomato", "greek-yogurt"],
+  "choices": [
+    {
+      "id": "vegetable",
+      "label": "Vegetable",
+      "options": [
+        { "id": "broccoli", "label": "broccoli", "note": "Add florets to boiling pasta for the final 3–4 minutes." },
+        { "id": "spinach", "label": "spinach", "note": "Stir into the hot sauce at the end for 30–60 seconds." },
+        {
+          "id": "mushrooms",
+          "label": "mushrooms",
+          "note": "Sauté with the beef for 3–5 minutes before adding onion and garlic."
+        },
+        { "id": "zucchini", "label": "zucchini", "note": "Dice and simmer with the blended tomato for 5–10 minutes." }
+      ]
+    },
+    {
+      "id": "finish",
+      "label": "Sauce finish",
+      "options": [
+        { "id": "creamy", "label": "creamy Greek yogurt", "note": "Stir yogurt in only after turning off the heat." },
+        {
+          "id": "no-yogurt",
+          "label": "tomato only",
+          "note": "Skip the yogurt for a stronger tomato flavor and fewer calories."
+        }
+      ]
+    }
+  ],
+  "ingredients": [
+    { "id": "pasta", "amount": "80 g", "name": "dry whole-wheat farfalle", "group": "Pasta" },
+    { "id": "water", "amount": "1–1.5 L", "name": "water", "group": "Pasta" },
+    { "id": "pasta-salt", "amount": "7–10 g", "name": "salt for pasta water", "group": "Pasta" },
+    {
+      "id": "broccoli",
+      "amount": "100 g",
+      "name": "broccoli",
+      "note": "cut into small florets",
+      "group": "Vegetable",
+      "when": { "vegetable": "broccoli" }
+    },
+    {
+      "id": "spinach",
+      "amount": "100 g",
+      "name": "spinach",
+      "note": "washed",
+      "group": "Vegetable",
+      "when": { "vegetable": "spinach" }
+    },
+    {
+      "id": "mushrooms",
+      "amount": "100 g",
+      "name": "mushrooms",
+      "note": "sliced",
+      "group": "Vegetable",
+      "when": { "vegetable": "mushrooms" }
+    },
+    {
+      "id": "zucchini",
+      "amount": "100 g",
+      "name": "zucchini",
+      "note": "diced",
+      "group": "Vegetable",
+      "when": { "vegetable": "zucchini" }
+    },
+    {
+      "id": "beef",
+      "amount": "150 g",
+      "name": "lean beef mince",
+      "note": "raw weight; 5% fat for nutrition estimate",
+      "group": "Beef-tomato sauce"
+    },
+    { "id": "oil", "amount": "5 g", "name": "olive oil", "group": "Beef-tomato sauce" },
+    {
+      "id": "tomato",
+      "amount": "180 g",
+      "name": "tomatoes",
+      "note": "fresh or canned, to blend",
+      "group": "Beef-tomato sauce"
+    },
+    { "id": "onion", "amount": "25 g", "name": "onion", "note": "finely diced", "group": "Beef-tomato sauce" },
+    {
+      "id": "garlic",
+      "amount": "2 cloves",
+      "metric": "6 g",
+      "name": "garlic",
+      "note": "minced",
+      "group": "Beef-tomato sauce"
+    },
+    { "id": "oregano", "amount": "1 tsp.", "metric": "1 g", "name": "dried oregano", "group": "Beef-tomato sauce" },
+    { "id": "sauce-salt", "name": "salt", "note": "to taste", "group": "Beef-tomato sauce" },
+    { "id": "pepper", "name": "black pepper", "note": "to taste", "group": "Beef-tomato sauce" },
+    { "id": "chili", "name": "chili flakes", "note": "optional, to taste", "group": "Beef-tomato sauce" },
+    {
+      "id": "yogurt",
+      "amount": "60 g",
+      "name": "Greek-style yogurt",
+      "note": "strained homemade style",
+      "group": "Finish",
+      "when": { "finish": "creamy" }
+    },
+    { "id": "parmesan", "amount": "12 g", "name": "Parmesan", "note": "grated", "group": "Finish" }
+  ],
+  "steps": [
+    {
+      "id": "tomato-puree",
+      "action": "Blend tomatoes",
+      "inputs": ["tomato"],
+      "text": "Blend the 180 g tomatoes until fairly smooth. No need to peel them."
+    },
+    {
+      "id": "pasta-cooked",
+      "action": "Boil pasta and veg",
+      "inputs": ["water", "pasta-salt", "pasta", "broccoli"],
+      "text": "Bring 1–1.5 L water to a strong boil and salt it with 7–10 g salt. Add the 80 g dry whole-wheat farfalle, stirring for 20–30 seconds. Cook about 9–12 min (check packet; start tasting at 9 min). If using broccoli, add small florets to the same pot for the final 3–4 min. Stop about 1 min before perfectly tender, since the pasta finishes in the sauce. Save ~100 mL of pasta water, then drain pasta (and broccoli) without rinsing."
+    },
+    {
+      "id": "beef-browned",
+      "action": "Brown beef",
+      "inputs": ["oil", "beef"],
+      "text": "Heat 5 g olive oil in a pan over medium-high heat. Add 150 g lean beef mince, breaking it up, and brown for 5–7 min."
+    },
+    {
+      "id": "beef-aromatics",
+      "action": "Add onion and garlic",
+      "inputs": ["beef-browned", "mushrooms", "onion", "garlic"],
+      "text": "If using mushrooms, add the sliced mushrooms after the beef has browned and cook 3–5 min. Add onion and cook 1–2 min; add minced garlic for the last ~30–60 sec, until fragrant."
+    },
+    {
+      "id": "tomato-sauce",
+      "action": "Simmer tomato sauce",
+      "inputs": ["beef-aromatics", "tomato-puree", "zucchini", "oregano", "sauce-salt", "pepper", "chili"],
+      "text": "Add blended tomato, dried oregano, salt, black pepper and optional chili. If using zucchini, add diced zucchini now. Simmer 5–10 min, stirring occasionally, until the sauce thickens and any zucchini is tender."
+    },
+    {
+      "id": "pasta-sauced",
+      "action": "Combine pasta and sauce",
+      "inputs": ["tomato-sauce", "spinach", "pasta-cooked"],
+      "text": "If using spinach, stir it into the hot tomato sauce until wilted, about 30–60 sec. Add the drained pasta (and broccoli if using). Toss 30–60 sec to finish cooking, adding 20–40 mL reserved pasta water as needed to loosen the sauce."
+    },
+    {
+      "action": "Finish off heat",
+      "inputs": ["pasta-sauced", "yogurt", "parmesan"],
+      "text": "Turn off the heat. For the creamy version, stir in 60 g Greek-style yogurt, then the 12 g grated Parmesan; for the tomato-only version, add just Parmesan. Adjust salt and pepper. Do not boil after adding yogurt, or it can split. Serve immediately."
+    }
+  ],
+  "notes": [
+    "Nutrition is estimated using raw 5%-fat beef mince, whole-wheat dry pasta, 100 g of the selected vegetable and 60 g homemade strained yogurt (140 kcal, 9.5 g protein, 12 g carbohydrate, 5.7 g fat per 100 g).",
+    "The per-100-g estimates use cooked serving weights of about 610–675 g depending on the selected vegetables and yogurt. Weigh the actual finished dish for better accuracy.",
+    "Higher-fat beef mince adds calories and fat. If you use 10%-fat rather than 5%-fat beef, allow roughly 60 extra kcal and 7.5 g extra fat per serving.",
+    "If your tomatoes are overly acidic, a small pinch of sugar can help; it is not included in the nutrition estimate."
+  ],
+  "nutrition": [
+    {
+      "per": "1 serving",
+      "kcal": 755,
+      "protein": 58.1,
+      "fat": 22.2,
+      "carbs": 83.4,
+      "sugar": 16.7,
+      "fiber": 13.1,
+      "when": { "vegetable": "broccoli", "finish": "creamy" }
+    },
+    {
+      "per": "100 g",
+      "kcal": 112,
+      "protein": 8.6,
+      "fat": 3.3,
+      "carbs": 12.4,
+      "sugar": 2.5,
+      "fiber": 1.9,
+      "when": { "vegetable": "broccoli", "finish": "creamy" }
+    },
+    {
+      "per": "1 serving",
+      "kcal": 671,
+      "protein": 52.4,
+      "fat": 18.8,
+      "carbs": 76.2,
+      "sugar": 10.1,
+      "fiber": 13.1,
+      "when": { "vegetable": "broccoli", "finish": "no-yogurt" }
+    },
+    {
+      "per": "100 g",
+      "kcal": 109,
+      "protein": 8.5,
+      "fat": 3.1,
+      "carbs": 12.4,
+      "sugar": 1.6,
+      "fiber": 2.1,
+      "when": { "vegetable": "broccoli", "finish": "no-yogurt" }
+    },
+    {
+      "per": "1 serving",
+      "kcal": 744,
+      "protein": 58.1,
+      "fat": 22.2,
+      "carbs": 80.4,
+      "sugar": 15.4,
+      "fiber": 12.7,
+      "when": { "vegetable": "spinach", "finish": "creamy" }
+    },
+    {
+      "per": "100 g",
+      "kcal": 116,
+      "protein": 9,
+      "fat": 3.5,
+      "carbs": 12.5,
+      "sugar": 2.4,
+      "fiber": 2,
+      "when": { "vegetable": "spinach", "finish": "creamy" }
+    },
+    {
+      "per": "1 serving",
+      "kcal": 660,
+      "protein": 52.4,
+      "fat": 18.8,
+      "carbs": 73.2,
+      "sugar": 8.8,
+      "fiber": 12.7,
+      "when": { "vegetable": "spinach", "finish": "no-yogurt" }
+    },
+    {
+      "per": "100 g",
+      "kcal": 113,
+      "protein": 9,
+      "fat": 3.2,
+      "carbs": 12.6,
+      "sugar": 1.5,
+      "fiber": 2.2,
+      "when": { "vegetable": "spinach", "finish": "no-yogurt" }
+    },
+    {
+      "per": "1 serving",
+      "kcal": 743,
+      "protein": 58.4,
+      "fat": 22.2,
+      "carbs": 80,
+      "sugar": 17,
+      "fiber": 11.5,
+      "when": { "vegetable": "mushrooms", "finish": "creamy" }
+    },
+    {
+      "per": "100 g",
+      "kcal": 115,
+      "protein": 9,
+      "fat": 3.4,
+      "carbs": 12.3,
+      "sugar": 2.6,
+      "fiber": 1.8,
+      "when": { "vegetable": "mushrooms", "finish": "creamy" }
+    },
+    {
+      "per": "1 serving",
+      "kcal": 659,
+      "protein": 52.7,
+      "fat": 18.8,
+      "carbs": 72.8,
+      "sugar": 10.4,
+      "fiber": 11.5,
+      "when": { "vegetable": "mushrooms", "finish": "no-yogurt" }
+    },
+    {
+      "per": "100 g",
+      "kcal": 112,
+      "protein": 9,
+      "fat": 3.2,
+      "carbs": 12.4,
+      "sugar": 1.8,
+      "fiber": 2,
+      "when": { "vegetable": "mushrooms", "finish": "no-yogurt" }
+    },
+    {
+      "per": "1 serving",
+      "kcal": 738,
+      "protein": 56.5,
+      "fat": 22.2,
+      "carbs": 79.9,
+      "sugar": 17.5,
+      "fiber": 11.5,
+      "when": { "vegetable": "zucchini", "finish": "creamy" }
+    },
+    {
+      "per": "100 g",
+      "kcal": 111,
+      "protein": 8.5,
+      "fat": 3.3,
+      "carbs": 12,
+      "sugar": 2.6,
+      "fiber": 1.7,
+      "when": { "vegetable": "zucchini", "finish": "creamy" }
+    },
+    {
+      "per": "1 serving",
+      "kcal": 654,
+      "protein": 50.8,
+      "fat": 18.8,
+      "carbs": 72.7,
+      "sugar": 10.9,
+      "fiber": 11.5,
+      "when": { "vegetable": "zucchini", "finish": "no-yogurt" }
+    },
+    {
+      "per": "100 g",
+      "kcal": 108,
+      "protein": 8.4,
+      "fat": 3.1,
+      "carbs": 12,
+      "sugar": 1.8,
+      "fiber": 1.9,
+      "when": { "vegetable": "zucchini", "finish": "no-yogurt" }
+    }
+  ]
+}
