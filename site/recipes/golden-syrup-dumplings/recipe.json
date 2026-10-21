@@ -1,0 +1,348 @@
+{
+  "$schema": "../recipe.schema.json",
+  "title": "Golden Syrup Dumplings",
+  "description": "Soft stovetop dumplings in a warm golden syrup sauce. Choose classic or lower-sugar wholemeal versions, with optional ground flaxseed; the base recipe makes 4 dumplings and scales to 8.",
+  "yield": "4 dumplings (with sauce)",
+  "time": { "prep": "10 min", "cook": "18 min", "total": "28 min" },
+  "tags": ["dumplings", "dessert", "golden-syrup", "stovetop", "comfort-food"],
+  "choices": [
+    {
+      "id": "version",
+      "label": "Version",
+      "options": [
+        {
+          "id": "classic",
+          "label": "classic",
+          "note": "The original, richer white-flour dumplings with extra sugar and butter in the sauce."
+        },
+        {
+          "id": "lighter",
+          "label": "healthier wholemeal",
+          "note": "Less butter and syrup, no extra sugar, and one-third wholemeal flour."
+        },
+        {
+          "id": "flax",
+          "label": "healthier with flaxseed",
+          "note": "As above, plus 5 g ground flaxseed and a splash more milk for fibre."
+        }
+      ]
+    }
+  ],
+  "ingredients": [
+    {
+      "id": "flour-c",
+      "amount": "75 g",
+      "metric": "75 g",
+      "name": "self-raising flour",
+      "group": "Dumplings",
+      "when": { "version": "classic" }
+    },
+    {
+      "id": "flour-h",
+      "amount": "50 g",
+      "metric": "50 g",
+      "name": "self-raising flour",
+      "group": "Dumplings",
+      "when": { "version": "lighter" }
+    },
+    {
+      "id": "flour-f",
+      "amount": "50 g",
+      "metric": "50 g",
+      "name": "self-raising flour",
+      "group": "Dumplings",
+      "when": { "version": "flax" }
+    },
+    {
+      "id": "whole-h",
+      "amount": "25 g",
+      "metric": "25 g",
+      "name": "wholemeal flour",
+      "group": "Dumplings",
+      "when": { "version": "lighter" }
+    },
+    {
+      "id": "whole-f",
+      "amount": "25 g",
+      "metric": "25 g",
+      "name": "wholemeal flour",
+      "group": "Dumplings",
+      "when": { "version": "flax" }
+    },
+    {
+      "id": "baking-h",
+      "amount": "1/2 tsp.",
+      "metric": "2 g",
+      "name": "baking powder",
+      "group": "Dumplings",
+      "when": { "version": "lighter" }
+    },
+    {
+      "id": "baking-f",
+      "amount": "1/2 tsp.",
+      "metric": "2 g",
+      "name": "baking powder",
+      "group": "Dumplings",
+      "when": { "version": "flax" }
+    },
+    {
+      "id": "flax",
+      "amount": "5 g",
+      "metric": "5 g",
+      "name": "ground flaxseed",
+      "group": "Dumplings",
+      "when": { "version": "flax" }
+    },
+    {
+      "id": "butter-d-c",
+      "amount": "15 g",
+      "metric": "15 g",
+      "name": "cold butter",
+      "group": "Dumplings",
+      "when": { "version": "classic" }
+    },
+    {
+      "id": "butter-d-h",
+      "amount": "10 g",
+      "metric": "10 g",
+      "name": "cold butter",
+      "group": "Dumplings",
+      "when": { "version": "lighter" }
+    },
+    {
+      "id": "butter-d-f",
+      "amount": "10 g",
+      "metric": "10 g",
+      "name": "cold butter",
+      "group": "Dumplings",
+      "when": { "version": "flax" }
+    },
+    { "id": "salt", "amount": "1 pinch", "name": "salt", "group": "Dumplings" },
+    {
+      "id": "milk-c",
+      "amount": "40–50 mL",
+      "metric": "45 mL",
+      "name": "milk",
+      "group": "Dumplings",
+      "when": { "version": "classic" }
+    },
+    {
+      "id": "milk-h",
+      "amount": "45–55 mL",
+      "metric": "50 mL",
+      "name": "milk",
+      "group": "Dumplings",
+      "when": { "version": "lighter" }
+    },
+    {
+      "id": "milk-f",
+      "amount": "50–60 mL",
+      "metric": "55 mL",
+      "name": "milk",
+      "group": "Dumplings",
+      "when": { "version": "flax" }
+    },
+    { "id": "water", "amount": "250 mL", "metric": "250 mL", "name": "water", "group": "Sauce" },
+    {
+      "id": "syrup-c",
+      "amount": "62.5 mL",
+      "metric": "62.5 mL",
+      "name": "golden syrup",
+      "recipe": "homemade-golden-syrup",
+      "group": "Sauce",
+      "when": { "version": "classic" }
+    },
+    {
+      "id": "syrup-h",
+      "amount": "45–50 mL",
+      "metric": "47.5 mL",
+      "name": "golden syrup",
+      "recipe": "homemade-golden-syrup",
+      "group": "Sauce",
+      "when": { "version": "lighter" }
+    },
+    {
+      "id": "syrup-f",
+      "amount": "45–50 mL",
+      "metric": "47.5 mL",
+      "name": "golden syrup",
+      "recipe": "homemade-golden-syrup",
+      "group": "Sauce",
+      "when": { "version": "flax" }
+    },
+    {
+      "id": "sugar-c",
+      "amount": "30 g",
+      "metric": "30 g",
+      "name": "brown or white sugar",
+      "group": "Sauce",
+      "when": { "version": "classic" }
+    },
+    {
+      "id": "butter-s-c",
+      "amount": "15 g",
+      "metric": "15 g",
+      "name": "butter",
+      "group": "Sauce",
+      "when": { "version": "classic" }
+    },
+    {
+      "id": "butter-s-h",
+      "amount": "7.5 g",
+      "metric": "7.5 g",
+      "name": "butter",
+      "group": "Sauce",
+      "when": { "version": "lighter" }
+    },
+    {
+      "id": "butter-s-f",
+      "amount": "7.5 g",
+      "metric": "7.5 g",
+      "name": "butter",
+      "group": "Sauce",
+      "when": { "version": "flax" }
+    },
+    {
+      "id": "cinnamon-h",
+      "amount": "1/4 tsp.",
+      "metric": "0.65 g",
+      "name": "ground cinnamon",
+      "note": "or vanilla, to taste",
+      "group": "Sauce",
+      "when": { "version": "lighter" }
+    },
+    {
+      "id": "cinnamon-f",
+      "amount": "1/4 tsp.",
+      "metric": "0.65 g",
+      "name": "ground cinnamon",
+      "note": "or vanilla, to taste",
+      "group": "Sauce",
+      "when": { "version": "flax" }
+    }
+  ],
+  "steps": [
+    {
+      "id": "sauce",
+      "action": "simmer sauce",
+      "inputs": [
+        "water",
+        "syrup-c",
+        "syrup-h",
+        "syrup-f",
+        "sugar-c",
+        "butter-s-c",
+        "butter-s-h",
+        "butter-s-f",
+        "cinnamon-h",
+        "cinnamon-f"
+      ],
+      "text": "Combine the selected sauce ingredients in a wide saucepan; bring to a gentle simmer over low heat."
+    },
+    {
+      "id": "crumb",
+      "action": "rub into crumbs",
+      "inputs": [
+        "flour-c",
+        "flour-h",
+        "flour-f",
+        "whole-h",
+        "whole-f",
+        "baking-h",
+        "baking-f",
+        "flax",
+        "butter-d-c",
+        "butter-d-h",
+        "butter-d-f",
+        "salt"
+      ],
+      "text": "Mix the flours, any added baking powder or flaxseed, and salt. Rub in the cold butter with fingertips until crumbly."
+    },
+    {
+      "id": "dough",
+      "action": "add milk",
+      "inputs": ["crumb", "milk-c", "milk-h", "milk-f"],
+      "text": "Stir in the milk gradually to make a soft, slightly sticky dough. Wholemeal and flax may need the higher end of their milk range. Do not overmix."
+    },
+    {
+      "id": "balls",
+      "action": "shape 4 balls",
+      "inputs": ["dough"],
+      "text": "Divide the dough into 4 equal, loosely formed balls."
+    },
+    {
+      "action": "simmer, covered",
+      "inputs": ["sauce", "balls"],
+      "text": "Drop dumplings into gently simmering sauce, spaced apart. Cover and simmer on low for 15–18 minutes; do not lift the lid for the first 12 minutes. Serve warm with the sauce. Greek yoghurt is a nice topping."
+    }
+  ],
+  "notes": [
+    "Set recipe scale to 2× for the original 8-dumpling batch. Nutrition figures assume all sauce is eaten, including its butter and sugar.",
+    "Nutrition assumes whole milk, homemade golden syrup at about 313 kcal/100 g (roughly 1.35 g/mL), and approximately 35 g of water lost while cooking. The actual per-100-g values depend on how much sauce evaporates.",
+    "For richer sauce in either healthier version, use 10 g of sauce butter instead of 7.5 g; this adds roughly 18 kcal to the whole 4-dumpling batch.",
+    "The healthier versions have less butter and sugar, not zero sugar. Wholemeal and flax make the texture a little firmer and nuttier; extra milk helps keep the dough soft.",
+    "For the classic version, 62.5 mL of syrup is half of the original 125 mL used in the 8-dumpling recipe."
+  ],
+  "nutrition": [
+    {
+      "per": "100 g",
+      "kcal": 188,
+      "protein": 1.9,
+      "fat": 5.5,
+      "carbs": 32.4,
+      "sugar": 20.6,
+      "fiber": 0.4,
+      "when": { "version": "classic" }
+    },
+    {
+      "per": "1 dumpling + 1/4 sauce",
+      "kcal": 225,
+      "protein": 2.3,
+      "fat": 6.6,
+      "carbs": 38.8,
+      "sugar": 24.7,
+      "fiber": 0.5,
+      "when": { "version": "classic" }
+    },
+    {
+      "per": "100 g",
+      "kcal": 148,
+      "protein": 2.4,
+      "fat": 4,
+      "carbs": 25.9,
+      "sugar": 12.5,
+      "fiber": 1,
+      "when": { "version": "lighter" }
+    },
+    {
+      "per": "1 dumpling + 1/4 sauce",
+      "kcal": 157,
+      "protein": 2.5,
+      "fat": 4.2,
+      "carbs": 27.4,
+      "sugar": 13.3,
+      "fiber": 1.1,
+      "when": { "version": "lighter" }
+    },
+    {
+      "per": "100 g",
+      "kcal": 151,
+      "protein": 2.6,
+      "fat": 4.4,
+      "carbs": 25.7,
+      "sugar": 12.3,
+      "fiber": 1.3,
+      "when": { "version": "flax" }
+    },
+    {
+      "per": "1 dumpling + 1/4 sauce",
+      "kcal": 164,
+      "protein": 2.8,
+      "fat": 4.8,
+      "carbs": 27.9,
+      "sugar": 13.4,
+      "fiber": 1.4,
+      "when": { "version": "flax" }
+    }
+  ]
+}
