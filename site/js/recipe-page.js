@@ -15,6 +15,8 @@ const VIEWS = [
   { id: 'cook', label: 'Cook', render: renderCook, leave: leaveCook },
 ]
 const SCALES = [0.5, 1, 2, 3]
+// Sugar and fiber are part of the carbs, so they show inside the carbs group.
+const CARB_PARTS = ['sugar', 'fiber']
 const UNITS = [
   ['both', 'Both'],
   ['us', 'US'],
@@ -211,14 +213,25 @@ function savePicks({ recipe, picks }) {
   history.replaceState(null, '', `?${params}${location.hash}`)
 }
 
-// "Per 100 g · 480 kcal · 12 g protein · 30 g fat · 40 g carbs · 18 g sugar · 4 g fiber"
+// "Per 100 g · 480 kcal · 12 g protein · 30 g fat · 40 g carbs (incl. 18 g sugar · 4 g fiber)"
 function nutritionLine(entry) {
+  const has = (key) => typeof entry[key] === 'number'
+  const nutrient = (key) =>
+    h('span', {}, h('b', {}, key === 'kcal' ? formatNutrient(entry[key]) : `${formatNutrient(entry[key])} g`), ` ${key}`)
+  const parts = CARB_PARTS.filter(has)
   return h(
     'p',
     {},
     h('span', { class: 'nutrition-per' }, `Per ${entry.per}`),
-    NUTRIENTS.filter((key) => typeof entry[key] === 'number').map((key) =>
-      h('span', {}, h('b', {}, key === 'kcal' ? formatNutrient(entry[key]) : `${formatNutrient(entry[key])} g`), ` ${key}`),
+    NUTRIENTS.filter((key) => has(key) && !CARB_PARTS.includes(key)).map((key) =>
+      key === 'carbs' && parts.length > 0
+        ? h(
+            'span',
+            { class: 'nutrition-carbs' },
+            nutrient(key),
+            h('span', { class: 'nutrition-parts' }, h('span', { class: 'nutrition-incl' }, 'incl.'), parts.map(nutrient)),
+          )
+        : nutrient(key),
     ),
   )
 }
