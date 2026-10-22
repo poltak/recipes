@@ -136,17 +136,17 @@ function showRecipe(recipe) {
         h('h1', { style: `view-transition-name: title-${slug}` }, recipe.title),
         recipe.description && h('p', { class: 'lede' }, recipe.description),
         h(
-          'p',
-          { class: 'meta' },
-          recipe.yield && h('span', {}, 'Makes ', yieldText),
-          ['prep', 'cook', 'total'].map((key) => recipe.time?.[key] && h('span', {}, `${capitalize(key)} ${recipe.time[key]}`)),
+          'dl',
+          { class: 'facts' },
+          recipe.yield && fact({ label: 'Makes', value: yieldText }),
+          ['prep', 'cook', 'total'].map((key) => recipe.time?.[key] && fact({ label: capitalize(key), value: recipe.time[key] })),
           recipe.source &&
-            h(
-              'span',
-              {},
-              'From ',
-              recipe.source.url ? h('a', { href: recipe.source.url, rel: 'noopener' }, recipe.source.name ?? 'source') : recipe.source.name,
-            ),
+            fact({
+              label: 'From',
+              value: recipe.source.url
+                ? h('a', { href: recipe.source.url, rel: 'noopener' }, recipe.source.name ?? 'source')
+                : recipe.source.name,
+            }),
         ),
         recipe.tags?.length > 0 &&
           h(
@@ -225,6 +225,11 @@ function nutritionLine(entry) {
 
 function formatNutrient(value) {
   return String(value >= 10 ? Math.round(value) : Number(value.toFixed(1)))
+}
+
+// "PREP / 15 min" in the recipe header.
+function fact({ label, value }) {
+  return h('div', { class: 'fact' }, h('dt', {}, label), h('dd', {}, value))
 }
 
 // A row of buttons where one is on, such as "½× 1× 2× 3×".

@@ -13,7 +13,7 @@ export function renderTable({ recipe, scale, units }) {
       'tbody',
       {},
       prep.map((step) => h('tr', {}, h('td', { class: 'prep', colspan: cols }, step.action))),
-      rows.map((cells, row) => h('tr', { 'data-row': row }, cells.map((cell) => renderCell({ cell, scale, units })))),
+      rows.map((cells, row) => h('tr', { 'data-row': row }, cells.map((cell) => renderCell({ cell, last: recipe.steps.at(-1), scale, units })))),
     ),
   )
   // Point at (or tap) a step to see its full text and the ingredients that go into it.
@@ -25,7 +25,7 @@ export function renderTable({ recipe, scale, units }) {
   return h('div', {}, h('div', { class: 'rtable-wrap' }, table), detail)
 }
 
-function renderCell({ cell, scale, units }) {
+function renderCell({ cell, last, scale, units }) {
   const span = {
     rowspan: cell.rowspan > 1 ? cell.rowspan : null,
     colspan: cell.colspan > 1 ? cell.colspan : null,
@@ -39,7 +39,7 @@ function renderCell({ cell, scale, units }) {
   return h(
     'td',
     {
-      class: vertical ? 'op vertical' : 'op',
+      class: ['op', vertical && 'vertical', cell.step === last && 'final'].filter(Boolean).join(' '),
       style: `--rows: ${cell.rowspan}`,
       title: text ?? null,
       'data-first': cell.firstRow,

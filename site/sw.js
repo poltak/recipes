@@ -5,13 +5,16 @@
 // Images: use the saved copy first, then get a new copy in the background.
 //
 // Change CACHE when you change this list of files.
-const CACHE = 'recipes-v1'
+const CACHE = 'recipes-v2'
 const SHELL = [
   './',
   'index.html',
   'recipe.html',
   'manifest.webmanifest',
   'css/style.css',
+  'fonts/fraunces-latin.woff2',
+  'fonts/fraunces-italic-latin.woff2',
+  'fonts/fraunces-vietnamese.woff2',
   'js/amount.js',
   'js/dom.js',
   'js/durations.js',

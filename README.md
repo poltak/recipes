@@ -35,6 +35,7 @@ site/                     the website (Cloudflare serves the files in this folde
   js/model.js             recipe checks and the table layout
   js/amount.js            amounts and scaling
   js/views/               one file per view
+  fonts/                  Fraunces, the heading font (SIL Open Font License)
   recipes/<name>/         one folder per recipe: recipe.json and its pictures
   recipes/recipe.schema.json
 scripts/build.mjs         checks recipes, writes site/recipes/index.json
