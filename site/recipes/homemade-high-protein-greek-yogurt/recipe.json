@@ -1,0 +1,63 @@
+{
+  "$schema": "../recipe.schema.json",
+  "title": "Homemade High-Protein Greek Yogurt",
+  "description": "Thick, strained Greek yogurt made in a rice cooker's Yogurt mode with UHT milk, skim milk powder and a starter from the previous batch. No preheating to 85°C.",
+  "yield": "about 707 g Greek yogurt",
+  "time": { "prep": "5–10 min", "cook": "8 hr ferment; 11.5 hr strain", "total": "about 23–24 hr including chilling" },
+  "tags": ["greek-yogurt", "yogurt", "high-protein", "homemade", "rice-cooker", "meal-prep"],
+  "ingredients": [
+    { "id": "milk", "name": "full-cream UHT milk", "amount": "1 L", "metric": "1 L" },
+    { "id": "powder", "name": "skim milk powder", "amount": "100 g", "metric": "100 g" },
+    {
+      "id": "starter",
+      "name": "plain Greek yogurt",
+      "amount": "40 g",
+      "metric": "40 g",
+      "note": "From the previous batch; plain live-culture yogurt such as Đà Lạt Milk for the first batch."
+    }
+  ],
+  "steps": [
+    {
+      "id": "milk-mix",
+      "inputs": ["milk", "powder"],
+      "action": "Whisk until smooth",
+      "text": "Whisk the skim milk powder into the UHT milk until completely dissolved. You do not need the old 82–85°C heating step."
+    },
+    {
+      "id": "started",
+      "inputs": ["milk-mix", "starter"],
+      "action": "Mix in starter",
+      "text": "Gently stir in the yogurt starter until evenly mixed."
+    },
+    {
+      "id": "fermented",
+      "inputs": ["started"],
+      "action": "Yogurt mode 8 hr",
+      "text": "Put the mixture in the rice cooker and run Yogurt mode for approximately 8 hours, until set."
+    },
+    {
+      "id": "chilled",
+      "inputs": ["fermented"],
+      "action": "Chill 3–4 hr",
+      "text": "Refrigerate for 3–4 hours before straining."
+    },
+    {
+      "id": "strained",
+      "inputs": ["chilled"],
+      "action": "Strain 11.5 hr",
+      "text": "Pour into a cloth-lined strainer over a bowl and strain in the fridge for approximately 11.5 hours. The recorded batch produced 707 g yogurt and 368 g whey."
+    },
+    {
+      "inputs": ["strained"],
+      "action": "Store chilled",
+      "text": "Transfer the thick yogurt to a clean covered container and keep refrigerated. Save 40 g as starter for the next batch."
+    }
+  ],
+  "notes": [
+    "Latest method: skip heating to 85°C. UHT milk is already heat-treated, and 100 g skim milk powder gives enough thickness.",
+    "Latest measured batch (23 Sep 2026): 707 g finished yogurt and 368 g strained whey after 11.5 hours.",
+    "Nutrition is approximate, estimated from full-cream UHT milk, skim milk powder and 40 g starter, less nutrients lost in about 368 g strained whey. Exact numbers depend on milk brands and final yield.",
+    "If starting without saved yogurt, use a plain live-culture yogurt starter, as in earlier batches."
+  ],
+  "nutrition": [{ "per": "100 g", "kcal": 128, "protein": 9.4, "fat": 5, "carbs": 11.8, "sugar": 11.8, "fiber": 0 }]
+}
