@@ -1,0 +1,194 @@
+{
+  "$schema": "../recipe.schema.json",
+  "title": "Creamy Chicken & Broccoli Protein Pasta",
+  "description": "Whole-wheat pasta, golden pan-cooked chicken breast and broccoli tossed in a creamy Greek-yogurt, garlic and Parmesan sauce. Includes spinach and mushroom swaps.",
+  "yield": "1 large serving",
+  "time": { "prep": "10 min", "cook": "20–25 min", "total": "30–35 min" },
+  "tags": ["pasta", "chicken", "broccoli", "high-protein", "greek-yogurt", "dinner"],
+  "choices": [
+    {
+      "id": "vegetable",
+      "label": "Vegetable",
+      "options": [
+        { "id": "broccoli", "label": "broccoli", "note": "Add florets to boiling pasta for the last 3–4 minutes." },
+        {
+          "id": "spinach",
+          "label": "spinach",
+          "note": "Stir into the pan with pasta and chicken until just wilted, 30–60 seconds."
+        },
+        {
+          "id": "mushrooms",
+          "label": "mushrooms",
+          "note": "Sauté sliced mushrooms for 3–5 minutes before adding chicken and garlic."
+        }
+      ]
+    }
+  ],
+  "ingredients": [
+    {
+      "id": "pasta",
+      "amount": "80 g",
+      "name": "dry pasta",
+      "note": "whole-wheat farfalle works well",
+      "group": "Pasta and vegetables"
+    },
+    { "id": "water", "amount": "1–1.5 L", "name": "water", "group": "Pasta and vegetables" },
+    {
+      "id": "salt-water",
+      "amount": "7–10 g",
+      "name": "salt",
+      "note": "for pasta water; most is discarded",
+      "group": "Pasta and vegetables"
+    },
+    {
+      "id": "broccoli",
+      "amount": "120 g",
+      "name": "broccoli florets",
+      "group": "Pasta and vegetables",
+      "when": { "vegetable": "broccoli" }
+    },
+    {
+      "id": "spinach",
+      "amount": "120 g",
+      "name": "spinach",
+      "note": "washed",
+      "group": "Pasta and vegetables",
+      "when": { "vegetable": "spinach" }
+    },
+    {
+      "id": "mushrooms",
+      "amount": "120 g",
+      "name": "mushrooms",
+      "note": "sliced",
+      "group": "Pasta and vegetables",
+      "when": { "vegetable": "mushrooms" }
+    },
+    {
+      "id": "chicken",
+      "amount": "150 g",
+      "name": "pan-cooked chicken breast",
+      "note": "about 200 g raw before cooking; includes the 5 g olive oil used to sear it",
+      "recipe": "pan-cooked-chicken-breast-for-pasta",
+      "group": "Chicken and creamy sauce"
+    },
+    {
+      "id": "garlic",
+      "amount": "2 cloves",
+      "metric": "6 g",
+      "name": "garlic",
+      "note": "minced",
+      "group": "Chicken and creamy sauce"
+    },
+    {
+      "id": "yogurt",
+      "amount": "100 g",
+      "name": "Greek-style yogurt",
+      "note": "homemade, strained; add off heat",
+      "group": "Chicken and creamy sauce"
+    },
+    {
+      "id": "parmesan",
+      "amount": "12 g",
+      "name": "Parmesan cheese",
+      "note": "grated",
+      "group": "Chicken and creamy sauce"
+    },
+    { "id": "pepper", "name": "black pepper", "note": "to taste", "group": "Chicken and creamy sauce" },
+    { "id": "salt-finish", "name": "salt", "note": "to taste", "group": "Chicken and creamy sauce" },
+    { "id": "chili", "name": "chili flakes", "note": "optional", "group": "Chicken and creamy sauce" }
+  ],
+  "steps": [
+    {
+      "id": "boiled-pasta",
+      "action": "Boil pasta and veg",
+      "inputs": ["pasta", "water", "salt-water", "broccoli"],
+      "text": "Boil 1–1.5 L water and add 7–10 g salt. Add 80 g dry pasta and stir for the first 20–30 seconds. Whole-wheat farfalle typically takes about 9–12 minutes; start tasting at 9 minutes or follow the packet. For the broccoli version, add the florets to the same pot for the final 3–4 minutes. Stop the pasta about 1 minute before fully done. Reserve about 100 mL pasta water, then drain without rinsing."
+    },
+    {
+      "id": "chicken-garlic",
+      "action": "Warm chicken and garlic",
+      "inputs": ["chicken", "mushrooms", "garlic"],
+      "text": "Cook the chicken breast using the linked pan-cooked chicken recipe (or use 150 g already cooked, sliced chicken). In the same pan with its cooking juices, cook mushrooms first for 3–5 minutes if selected, adding a small splash of pasta water if needed. Add the minced garlic and sliced cooked chicken, warming briefly without burning the garlic."
+    },
+    {
+      "id": "tossed",
+      "action": "Toss together",
+      "inputs": ["chicken-garlic", "boiled-pasta", "spinach"],
+      "text": "Add the drained pasta and broccoli (if selected) to the chicken pan. If using spinach, stir it in now and allow 30–60 seconds to wilt. Add 2–4 tablespoons of the reserved pasta water to loosen, tossing for about 30–60 seconds until the pasta finishes cooking."
+    },
+    {
+      "action": "Creamy finish off heat",
+      "inputs": ["tossed", "yogurt", "parmesan", "pepper", "salt-finish", "chili"],
+      "text": "Turn OFF the heat. Stir in the 100 g Greek-style yogurt and 12 g grated Parmesan until creamy. Season with black pepper, salt if needed and optional chili flakes. Add a little more reserved pasta water to loosen if needed. Do not boil the yogurt sauce: it can split."
+    }
+  ],
+  "notes": [
+    "The linked chicken recipe makes the 150 g cooked chicken needed here from 200 g raw skinless breast and 5 g olive oil; the olive oil is already counted in the nutrition. Do not count it twice.",
+    "Nutrition estimates assume 80 g whole-wheat dry pasta, 100 g homemade strained Greek-style yogurt (140 kcal/100 g, 9.5 g protein/100 g), 12 g Parmesan and the full cooked chicken recipe. Actual yogurt and pasta brands may vary.",
+    "Estimated finished weights: ~597 g with broccoli, ~562 g with spinach, ~572 g with mushrooms. For accurate 100-g logging, weigh your finished serving.",
+    "Earlier 650–700 kcal estimates did not fully account for the chicken cooking oil and higher-energy homemade yogurt. The updated macros include both.",
+    "If you use already cooked chicken made without oil, calories will be around 44 kcal lower than shown, all else equal."
+  ],
+  "nutrition": [
+    {
+      "per": "1 serving",
+      "kcal": 526,
+      "protein": 28.8,
+      "fat": 11.8,
+      "carbs": 79.5,
+      "sugar": 15.6,
+      "fiber": 10.6,
+      "when": { "vegetable": "broccoli" }
+    },
+    {
+      "per": "100 g",
+      "kcal": 88,
+      "protein": 4.8,
+      "fat": 2,
+      "carbs": 13.3,
+      "sugar": 2.6,
+      "fiber": 1.8,
+      "when": { "vegetable": "broccoli" }
+    },
+    {
+      "per": "1 serving",
+      "kcal": 513,
+      "protein": 28.9,
+      "fat": 11.8,
+      "carbs": 75.9,
+      "sugar": 14.1,
+      "fiber": 10.1,
+      "when": { "vegetable": "spinach" }
+    },
+    {
+      "per": "100 g",
+      "kcal": 91,
+      "protein": 5.1,
+      "fat": 2.1,
+      "carbs": 13.5,
+      "sugar": 2.5,
+      "fiber": 1.8,
+      "when": { "vegetable": "spinach" }
+    },
+    {
+      "per": "1 serving",
+      "kcal": 511,
+      "protein": 29.2,
+      "fat": 11.7,
+      "carbs": 75.4,
+      "sugar": 15.9,
+      "fiber": 8.7,
+      "when": { "vegetable": "mushrooms" }
+    },
+    {
+      "per": "100 g",
+      "kcal": 89,
+      "protein": 5.1,
+      "fat": 2,
+      "carbs": 13.2,
+      "sugar": 2.8,
+      "fiber": 1.5,
+      "when": { "vegetable": "mushrooms" }
+    }
+  ]
+}
