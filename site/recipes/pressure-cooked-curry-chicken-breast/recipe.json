@@ -1,0 +1,71 @@
+{
+  "$schema": "../recipe.schema.json",
+  "title": "Pressure-Cooked Curry Chicken Breast",
+  "description": "Two chopped chicken breasts pressure-cooked in a cumin, curry, coriander, dark soy sauce and hạt nêm broth. Quick prep with 17 minutes at pressure.",
+  "yield": "2 servings (about 670 g including broth, estimated)",
+  "time": { "cook": "17 min at pressure" },
+  "tags": ["chicken", "pressure-cooker", "high-protein", "curry", "meal-prep"],
+  "ingredients": [
+    {
+      "id": "chicken",
+      "name": "Chicken breasts",
+      "amount": "2",
+      "note": "Chopped; about 400 g total assumed for nutrition"
+    },
+    { "id": "cumin", "name": "Ground cumin", "amount": "1 tbsp", "metric": "6 g" },
+    { "id": "curry", "name": "Curry powder", "amount": "1 tbsp", "metric": "6 g" },
+    { "id": "coriander", "name": "Ground coriander", "amount": "1 tbsp", "metric": "5 g" },
+    { "id": "soy", "name": "Dark soy sauce", "amount": "1 tbsp", "metric": "15 mL" },
+    { "id": "seasoning", "name": "Hạt nêm (Vietnamese seasoning powder)", "amount": "1 tsp", "metric": "4 g" },
+    { "id": "water", "name": "Water", "amount": "250 mL" }
+  ],
+  "steps": [
+    {
+      "id": "chopped",
+      "action": "Chop chicken",
+      "inputs": ["chicken"],
+      "text": "Chop both chicken breasts into pieces."
+    },
+    {
+      "id": "mix",
+      "action": "Mix everything",
+      "inputs": ["chopped", "cumin", "curry", "coriander", "soy", "seasoning", "water"],
+      "text": "Put the chopped chicken in the pressure cooker. Add the cumin, curry powder, coriander, dark soy sauce, hạt nêm and 250 mL water. Mix thoroughly."
+    },
+    {
+      "id": "pressure",
+      "action": "Bring to pressure",
+      "inputs": ["mix"],
+      "text": "Heat the pressure cooker at 2000 W until it reaches full pressure and the valve starts moving."
+    },
+    {
+      "action": "Cook at 600 W",
+      "inputs": ["pressure"],
+      "text": "Reduce the hob to 600 W and pressure-cook for 17 minutes, starting the timer when full pressure is reached. Let the cooker depressurize safely before opening."
+    }
+  ],
+  "notes": [
+    "Nutrition assumes 400 g raw skinless chicken breast total and about 670 g finished dish including the broth; actual values vary with breast size, seasoning brand and final weight.",
+    "Pressure release method wasn't specified in the original recipe; release pressure according to the cooker's instructions."
+  ],
+  "nutrition": [
+    {
+      "per": "100 g finished dish including broth (estimated)",
+      "kcal": 83,
+      "protein": 14,
+      "fat": 2,
+      "carbs": 2,
+      "sugar": 0.3,
+      "fiber": 0.8
+    },
+    {
+      "per": "1 of 2 servings including broth (estimated)",
+      "kcal": 278,
+      "protein": 47,
+      "fat": 6.8,
+      "carbs": 6.7,
+      "sugar": 1,
+      "fiber": 2.7
+    }
+  ]
+}
