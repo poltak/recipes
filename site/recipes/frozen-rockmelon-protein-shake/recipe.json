@@ -1,0 +1,51 @@
+{
+  "$schema": "../recipe.schema.json",
+  "title": "Frozen Rockmelon Protein Shake",
+  "description": "Creamy frozen rockmelon smoothie with homemade Greek yogurt, skim milk powder, chia and ground flax. No protein powder or ice needed.",
+  "yield": "1 shake",
+  "time": { "prep": "5 min", "total": "5 min" },
+  "tags": ["smoothie", "rockmelon", "high-protein", "breakfast", "snack", "fibre"],
+  "ingredients": [
+    { "id": "rockmelon", "amount": "200 g", "metric": "200 g", "name": "rockmelon", "note": "cubed and frozen" },
+    { "id": "yogurt", "amount": "100 g", "metric": "100 g", "name": "Greek yogurt", "note": "homemade fortified" },
+    { "id": "milk-powder", "amount": "15 g", "metric": "15 g", "name": "skim milk powder" },
+    { "id": "chia", "amount": "5 g", "metric": "5 g", "name": "chia seeds" },
+    { "id": "flax", "amount": "5 g", "metric": "5 g", "name": "ground flaxseed" },
+    {
+      "id": "water",
+      "amount": "50 g",
+      "metric": "50 g",
+      "name": "cold water",
+      "note": "start here; add up to 50 g more if needed"
+    }
+  ],
+  "steps": [
+    {
+      "id": "ingredients-in-blender",
+      "action": "add to blender",
+      "inputs": ["rockmelon", "yogurt", "milk-powder", "chia", "flax", "water"],
+      "text": "Add the frozen rockmelon, Greek yogurt, skim milk powder, chia, ground flaxseed, and 50 g cold water to a blender."
+    },
+    {
+      "id": "smoothie",
+      "action": "blend 20–30 sec",
+      "inputs": ["ingredients-in-blender"],
+      "text": "Blend for 20–30 seconds until creamy. If it's too thick, add a splash more cold water (up to about 50 g extra) and blend again."
+    },
+    {
+      "action": "serve cold",
+      "inputs": ["smoothie"],
+      "text": "Pour into a glass and drink immediately. No ice needed."
+    }
+  ],
+  "notes": [
+    "Freeze rockmelon cubes ahead of time. Frozen fruit makes the shake cold and thick without ice.",
+    "Start with 50 g water; use up to 100 g in total to adjust thickness. Nutrition per 100 g assumes 50 g added water and a 375 g finished shake.",
+    "Optional: a squeeze of lime, not included in nutrition.",
+    "Nutrition is an estimate using 122 kcal per 100 g for the homemade fortified Greek yogurt. Actual values depend on the yogurt and milk powder."
+  ],
+  "nutrition": [
+    { "per": "1 shake", "kcal": 295, "protein": 17.3, "fat": 9.6, "carbs": 37.7, "sugar": 32.6, "fiber": 4.9 },
+    { "per": "100 g", "kcal": 78.7, "protein": 4.6, "fat": 2.6, "carbs": 10.1, "sugar": 8.7, "fiber": 1.3 }
+  ]
+}
