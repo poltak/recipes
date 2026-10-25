@@ -1,0 +1,63 @@
+{
+  "$schema": "../recipe.schema.json",
+  "title": "Pan-Cooked Chicken Breast for Pasta",
+  "description": "Juicy, golden chicken breast seasoned with salt and pepper, pan-seared in a little olive oil, and sliced for pasta dishes or salads.",
+  "yield": "150 g cooked chicken",
+  "time": { "prep": "5 min", "cook": "8–10 min", "total": "18–20 min" },
+  "tags": ["chicken", "high-protein", "meal-prep", "pasta", "pan-seared"],
+  "ingredients": [
+    {
+      "id": "chicken",
+      "amount": "200 g",
+      "name": "raw skinless chicken breast",
+      "note": "roughly 150 g after cooking"
+    },
+    { "id": "oil", "amount": "5 g", "name": "olive oil", "note": "about 1 tsp" },
+    { "id": "salt", "name": "salt", "note": "to taste" },
+    { "id": "pepper", "name": "black pepper", "note": "to taste" },
+    { "id": "spice", "name": "paprika or garlic powder", "note": "optional, a small pinch" }
+  ],
+  "steps": [
+    {
+      "id": "thin",
+      "action": "Slice if thick",
+      "inputs": ["chicken"],
+      "text": "If the chicken breast is very thick, cut it horizontally into two thinner pieces so it cooks evenly."
+    },
+    {
+      "id": "seasoned",
+      "action": "Season both sides",
+      "inputs": ["thin", "salt", "pepper", "spice"],
+      "text": "Sprinkle both sides with salt and black pepper. Add a little paprika or garlic powder if desired."
+    },
+    {
+      "id": "seared",
+      "action": "Pan-sear 4–5 min/side",
+      "inputs": ["seasoned", "oil"],
+      "text": "Heat 5 g olive oil in a pan over medium-high heat. Cook the chicken about 4–5 minutes on each side, reducing the heat if it browns too fast. Cooking time varies with thickness; check that the thickest part reaches 74°C."
+    },
+    {
+      "action": "Rest and slice",
+      "inputs": ["seared"],
+      "text": "Rest the chicken for 5 minutes, then slice across the grain. Use the same pan and its browned juices when making the pasta sauce."
+    }
+  ],
+  "notes": [
+    "This makes approximately 150 g cooked chicken from 200 g raw chicken breast. The exact cooked yield depends on moisture lost during cooking.",
+    "A food thermometer is the best way to ensure the thickest part reaches 74°C; do not rely on color alone.",
+    "Macros assume all 5 g of olive oil is retained in the finished serving. Optional seasoning and salt contribute negligible calories.",
+    "Nutrition uses standard estimates for raw, skinless chicken breast (120 kcal, 22.5 g protein, 2.6 g fat per 100 g) and olive oil."
+  ],
+  "nutrition": [
+    {
+      "per": "1 serving (about 150 g cooked)",
+      "kcal": 284,
+      "protein": 45,
+      "fat": 10.2,
+      "carbs": 0,
+      "sugar": 0,
+      "fiber": 0
+    },
+    { "per": "100 g", "kcal": 189, "protein": 30, "fat": 6.8, "carbs": 0, "sugar": 0, "fiber": 0 }
+  ]
+}
